@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
 		A8D958AD208EB8D50072DD5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D958AC208EB8D50072DD5D /* AppDelegate.swift */; };
 		A8D958AF208EB8D50072DD5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D958AE208EB8D50072DD5D /* ViewController.swift */; };
 		A8D958B2208EB8D50072DD5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D958B0208EB8D50072DD5D /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A8D958A9208EB8D50072DD5D /* Ofnote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ofnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D958AC208EB8D50072DD5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8D958AE208EB8D50072DD5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		A812ED50208EBAD00061FDA7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A812ED52208EBCED0061FDA7 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			files = (
 				A8D958AF208EB8D50072DD5D /* ViewController.swift in Sources */,
 				A8D958AD208EB8D50072DD5D /* AppDelegate.swift in Sources */,
+				A812ED53208EBCED0061FDA7 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
