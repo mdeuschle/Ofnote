@@ -10,17 +10,59 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ofnote-->
+        <!--ofNote-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Ofnote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RootVC" customModule="Ofnote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kx1-vt-PZs">
+                                <rect key="frame" x="0.0" y="603" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="UVV-bJ-bLB"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="WZ0-oG-BxS">
+                                        <connections>
+                                            <action selector="addNoteTapped:" destination="BYZ-38-t0r" id="vf5-XZ-xzH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EY5-tf-bev">
+                                <rect key="frame" x="0.0" y="116" width="375" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoteCell" id="b1k-u8-QNA">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b1k-u8-QNA" id="EE1-sG-Exh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EY5-tf-bev" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="36V-eH-WJO"/>
+                            <constraint firstItem="EY5-tf-bev" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="45M-zl-6pH"/>
+                            <constraint firstItem="Kx1-vt-PZs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9tW-Nj-Bzu"/>
+                            <constraint firstItem="Kx1-vt-PZs" firstAttribute="top" secondItem="EY5-tf-bev" secondAttribute="bottom" id="OGl-om-48e"/>
+                            <constraint firstItem="EY5-tf-bev" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RbH-dI-YgY"/>
+                            <constraint firstItem="Kx1-vt-PZs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cKf-tj-J5Q"/>
+                            <constraint firstItem="Kx1-vt-PZs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="lgd-fy-ks8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Ofnote" id="tDQ-0f-Fgg"/>
+                    <navigationItem key="navigationItem" title="ofNote" id="tDQ-0f-Fgg"/>
+                    <connections>
+                        <outlet property="addNoteToolBar" destination="Kx1-vt-PZs" id="CEI-X8-ph9"/>
+                        <outlet property="tableView" destination="EY5-tf-bev" id="5Iv-0z-EM9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,10 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RootVC: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var addNoteToolBar: UIToolbar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    @IBAction func addNoteTapped(_ sender: UIBarButtonItem) {
+
     }
 }
 
