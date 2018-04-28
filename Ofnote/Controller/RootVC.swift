@@ -29,6 +29,7 @@ class RootVC: UIViewController, AddNoteDelegate {
 
     func add(note: Note) {
         notes.append(note)
+        notes.sort(by: { $0.dateCreated > $1.dateCreated })
         Dao().archive(notes: notes)
         tableView.reloadData()
     }
@@ -75,7 +76,6 @@ extension RootVC: UITableViewDataSource, SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
         options.expansionStyle = .destructive
-        options.transitionStyle = .border
         return options
     }
 
