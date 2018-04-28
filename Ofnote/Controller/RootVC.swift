@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class RootVC: UIViewController, AddNoteDelegate {
 
@@ -40,7 +41,7 @@ class RootVC: UIViewController, AddNoteDelegate {
     }
 }
 
-extension RootVC: UITableViewDataSource {
+extension RootVC: UITableViewDataSource, SwipeTableViewCellDelegate {
 
     //MARK: TableViewDataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,11 +53,32 @@ extension RootVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "NoteCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? SwipeTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.delegate = self
         let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
         cell.textLabel?.text = note.title
         return cell
     }
+
+    //MARK: SwipeTableViewCell
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+        return [deleteAction]
+    }
+
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
+    }
+
 }
 
 extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
