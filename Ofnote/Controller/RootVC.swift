@@ -19,6 +19,7 @@ class RootVC: UIViewController, AddNoteDelegate {
         super.viewDidLoad()
         tableView.dataSource = self
         notes = Dao().unarchiveNotes() ?? [Note]()
+        configureSearchBar()
     }
 
     func add(note: Note) {
@@ -52,8 +53,24 @@ extension RootVC: UITableViewDataSource {
         cell.textLabel?.text = note.title
         return cell
     }
-
 }
+
+extension RootVC: UISearchControllerDelegate {
+
+    private func configureSearchBar() {
+        let searchBarController = UISearchController(searchResultsController: nil)
+        searchBarController.delegate = self
+        navigationItem.searchController = searchBarController
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
