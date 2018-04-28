@@ -16,9 +16,11 @@
 		A8D958B2208EB8D50072DD5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D958B0208EB8D50072DD5D /* Main.storyboard */; };
 		A8D958B4208EB8D50072DD5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D958B3208EB8D50072DD5D /* Assets.xcassets */; };
 		A8D958B7208EB8D50072DD5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D958B5208EB8D50072DD5D /* LaunchScreen.storyboard */; };
+		FF03CF962B4B56AF27DEBB8E /* Pods_Ofnote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ofnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A8D19F292092CFE300F32A9C /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		A8D958B3208EB8D50072DD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8D958B6208EB8D50072DD5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8D958B8208EB8D50072DD5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD574A1E4D40B0F444DD59A7 /* Pods-Ofnote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ofnote.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote.release.xcconfig"; sourceTree = "<group>"; };
+		B381842F30D17218AC3C5473 /* Pods-Ofnote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ofnote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF03CF962B4B56AF27DEBB8E /* Pods_Ofnote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +87,8 @@
 			children = (
 				A8D958AB208EB8D50072DD5D /* Ofnote */,
 				A8D958AA208EB8D50072DD5D /* Products */,
+				DD8EE205F676828911704B02 /* Pods */,
+				D0C95A492894D477901424A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +115,23 @@
 			path = Ofnote;
 			sourceTree = "<group>";
 		};
+		D0C95A492894D477901424A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD8EE205F676828911704B02 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B381842F30D17218AC3C5473 /* Pods-Ofnote.debug.xcconfig */,
+				AD574A1E4D40B0F444DD59A7 /* Pods-Ofnote.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8D958BB208EB8D50072DD5D /* Build configuration list for PBXNativeTarget "Ofnote" */;
 			buildPhases = (
+				F61B1F0AD0A76C6E847439AF /* [CP] Check Pods Manifest.lock */,
 				A8D958A5208EB8D50072DD5D /* Sources */,
 				A8D958A6208EB8D50072DD5D /* Frameworks */,
 				A8D958A7208EB8D50072DD5D /* Resources */,
+				8273C813EDF9622C7500398A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +201,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8273C813EDF9622C7500398A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F61B1F0AD0A76C6E847439AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ofnote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A8D958A5208EB8D50072DD5D /* Sources */ = {
@@ -320,6 +385,7 @@
 		};
 		A8D958BC208EB8D50072DD5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B381842F30D17218AC3C5473 /* Pods-Ofnote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -335,6 +401,7 @@
 		};
 		A8D958BD208EB8D50072DD5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD574A1E4D40B0F444DD59A7 /* Pods-Ofnote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
