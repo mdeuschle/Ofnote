@@ -18,10 +18,12 @@ class RootVC: UIViewController, AddNoteDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        notes = Dao().unarchiveNotes() ?? [Note]()
     }
 
     func add(note: Note) {
         notes.append(note)
+        Dao().archive(notes: notes)
         tableView.reloadData()
     }
 

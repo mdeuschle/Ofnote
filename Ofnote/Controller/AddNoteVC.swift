@@ -29,6 +29,7 @@ class AddNoteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addNoteTextField.delegate = self
+        addNoteTextField.enablesReturnKeyAutomatically = true
     }
 }
 

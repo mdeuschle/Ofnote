@@ -13,6 +13,9 @@ struct Note: Codable {
     let dateCreated = Date()
 
     init?(title: String) {
+        if title == "" {
+            return nil
+        }
         self.title = title
     }
 }
