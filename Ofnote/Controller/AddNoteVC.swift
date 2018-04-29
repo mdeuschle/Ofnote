@@ -15,6 +15,7 @@ import UIKit
 class AddNoteVC: UIViewController {
 
     @IBOutlet weak var addNoteTextField: UITextField!
+    
     var delegate: AddNoteDelegate?
 
     init(delegate: AddNoteDelegate) {
@@ -30,6 +31,12 @@ class AddNoteVC: UIViewController {
         super.viewDidLoad()
         addNoteTextField.delegate = self
         addNoteTextField.enablesReturnKeyAutomatically = true
+        let accessoryView = Bundle.main.loadNibNamed("TextFieldAccessoryView", owner: self, options: nil)?.first as! UIView
+        accessoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
+        addNoteTextField.inputAccessoryView = accessoryView
+    }
+    @IBAction func priorityButtonTapped(_ sender: UIButton) {
+        print(sender.titleLabel?.text)
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
 		A863235E2095411200BE1CB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863235D2095411200BE1CB7 /* Priority.swift */; };
+		A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
 		A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19F292092CFE300F32A9C /* AddNoteVC.swift */; };
 		A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */; };
@@ -24,6 +25,7 @@
 		611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ofnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A863235D2095411200BE1CB7 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A8D19F292092CFE300F32A9C /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNoteVC.xib; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				A8D958B0208EB8D50072DD5D /* Main.storyboard */,
 				A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */,
+				A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				A8D958B4208EB8D50072DD5D /* Assets.xcassets in Resources */,
 				A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */,
 				A8D958B2208EB8D50072DD5D /* Main.storyboard in Resources */,
+				A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
