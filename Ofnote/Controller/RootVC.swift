@@ -60,6 +60,7 @@ extension RootVC: UITableViewDataSource, SwipeTableViewCellDelegate {
         cell.delegate = self
         let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
         cell.textLabel?.text = note.title
+        cell.backgroundColor = Priority(rawValue: note.priority)?.color()
         return cell
     }
 

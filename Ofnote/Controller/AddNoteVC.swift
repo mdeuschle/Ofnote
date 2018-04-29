@@ -39,7 +39,7 @@ extension AddNoteVC: UITextFieldDelegate {
         addNoteTextField.resignFirstResponder()
         if let delegate = delegate,
             let textFieldText = addNoteTextField.text,
-            let note = Note(title: textFieldText) {
+            let note = Note(title: textFieldText, priority: "Now") {
             delegate.add(note: note)
             navigationController?.popViewController(animated: true)
         }
