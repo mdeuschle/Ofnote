@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
+		A846CF19209EBA9D00399BBA /* ReminderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CF17209EBA9D00399BBA /* ReminderVC.swift */; };
+		A846CF1A209EBA9D00399BBA /* ReminderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A846CF18209EBA9D00399BBA /* ReminderVC.xib */; };
+		A846CF1D209EBB6B00399BBA /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CF1B209EBB6B00399BBA /* ReminderCell.swift */; };
+		A846CF1E209EBB6B00399BBA /* ReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A846CF1C209EBB6B00399BBA /* ReminderCell.xib */; };
 		A863235E2095411200BE1CB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863235D2095411200BE1CB7 /* Priority.swift */; };
 		A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
@@ -24,6 +28,10 @@
 /* Begin PBXFileReference section */
 		611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ofnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		A846CF17209EBA9D00399BBA /* ReminderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderVC.swift; sourceTree = "<group>"; };
+		A846CF18209EBA9D00399BBA /* ReminderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderVC.xib; sourceTree = "<group>"; };
+		A846CF1B209EBB6B00399BBA /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
+		A846CF1C209EBB6B00399BBA /* ReminderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderCell.xib; sourceTree = "<group>"; };
 		A863235D2095411200BE1CB7 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -57,6 +65,7 @@
 			children = (
 				A8D958AE208EB8D50072DD5D /* RootVC.swift */,
 				A8D19F292092CFE300F32A9C /* AddNoteVC.swift */,
+				A846CF17209EBA9D00399BBA /* ReminderVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -67,6 +76,9 @@
 				A8D958B0208EB8D50072DD5D /* Main.storyboard */,
 				A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */,
 				A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */,
+				A846CF18209EBA9D00399BBA /* ReminderVC.xib */,
+				A846CF1B209EBB6B00399BBA /* ReminderCell.swift */,
+				A846CF1C209EBB6B00399BBA /* ReminderCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,7 +211,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A846CF1A209EBA9D00399BBA /* ReminderVC.xib in Resources */,
 				A8D958B7208EB8D50072DD5D /* LaunchScreen.storyboard in Resources */,
+				A846CF1E209EBB6B00399BBA /* ReminderCell.xib in Resources */,
 				A8D958B4208EB8D50072DD5D /* Assets.xcassets in Resources */,
 				A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */,
 				A8D958B2208EB8D50072DD5D /* Main.storyboard in Resources */,
@@ -256,6 +270,8 @@
 				A8D19EFE2090300900F32A9C /* Dao.swift in Sources */,
 				A8D958AF208EB8D50072DD5D /* RootVC.swift in Sources */,
 				A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */,
+				A846CF1D209EBB6B00399BBA /* ReminderCell.swift in Sources */,
+				A846CF19209EBA9D00399BBA /* ReminderVC.swift in Sources */,
 				A8D958AD208EB8D50072DD5D /* AppDelegate.swift in Sources */,
 				A812ED53208EBCED0061FDA7 /* Note.swift in Sources */,
 				A863235E2095411200BE1CB7 /* Priority.swift in Sources */,

@@ -15,12 +15,10 @@ import UIKit
 class AddNoteVC: UIViewController {
 
     @IBOutlet weak var addNoteTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
-    
+
     var delegate: AddNoteDelegate?
     var note: Note?
     private var noteSaveTapped = false
-    private var datePicker = UIDatePicker()
 
     init(delegate: AddNoteDelegate) {
         self.delegate = delegate
@@ -35,18 +33,26 @@ class AddNoteVC: UIViewController {
         super.viewDidLoad()
         addNoteTextField.delegate = self
         addNoteTextField.enablesReturnKeyAutomatically = true
-        dateTextField.borderStyle = .none
-        dateTextField.tintColor = .clear
-        setUpDatePicker()
         setUpPrioritiesView()
+        setUpReminderButton()
         addNoteTextField.text = note != nil ? note?.title : ""
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if !noteSaveTapped {
+        if !noteSaveTapped && note == nil {
             saveNote()
         }
+    }
+    
+    private func setUpReminderButton() {
+        let button = UIBarButtonItem(title: "Reminder", style: .plain, target: self, action: #selector(reminderButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = button
+    }
+
+    @objc private func reminderButtonTapped(_ sender: UIBarButtonItem) {
+        let reminderVC = ReminderVC(nibName: "ReminderVC", bundle: nil)
+        navigationController?.pushViewController(reminderVC, animated: true)
     }
 
     private func setUpPrioritiesView() {
@@ -58,35 +64,12 @@ class AddNoteVC: UIViewController {
         addNoteTextField.inputAccessoryView = accessoryView
     }
 
-    private func setUpDatePicker(){
-        datePicker.datePickerMode = .date
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-        dateTextField.inputAccessoryView = toolbar
-        dateTextField.inputView = datePicker
-    }
-
     private func saveNote() {
         if let delegate = delegate,
             let textFieldText = addNoteTextField.text,
             let note = Note(title: textFieldText, priority: "Now") {
             delegate.add(note: note)
         }
-    }
-
-    @objc private func doneButtonTapped(){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        dateTextField.text = formatter.string(from: datePicker.date)
-        self.view.endEditing(true)
-    }
-
-    @objc private func cancelButtonTapped(){
-        self.view.endEditing(true)
     }
 
     @IBAction func priorityButtonTapped(_ sender: UIButton) {

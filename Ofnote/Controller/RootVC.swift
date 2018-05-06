@@ -68,6 +68,7 @@ extension RootVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
     //MARK: TableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let note = notes[indexPath.row]
         let addNoteVC = AddNoteVC(delegate: self)
         addNoteVC.note = note
