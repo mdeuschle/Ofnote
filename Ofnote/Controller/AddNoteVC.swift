@@ -18,6 +18,7 @@ class AddNoteVC: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     
     var delegate: AddNoteDelegate?
+    var note: Note?
     private var datePicker = UIDatePicker()
 
     init(delegate: AddNoteDelegate) {
@@ -36,10 +37,11 @@ class AddNoteVC: UIViewController {
         dateTextField.borderStyle = .none
         dateTextField.tintColor = .clear
         setUpDatePicker()
-//        setUpAccessoryView()
+        setUpPrioritiesView()
+        addNoteTextField.text = note != nil ? note?.title : ""
     }
 
-    private func setUpAccessoryView() {
+    private func setUpPrioritiesView() {
         guard let nib = Bundle.main.loadNibNamed("TextFieldAccessoryView", owner: self, options: nil),
             let accessoryView = nib[0] as? UIView else {
                 return
@@ -74,15 +76,9 @@ class AddNoteVC: UIViewController {
     @IBAction func priorityButtonTapped(_ sender: UIButton) {
         print(sender.titleLabel?.text)
     }
-    
-    @IBAction func setDateButtonTapped(_ sender: UIButton) {
-        dateTextField.becomeFirstResponder()
-        print(sender.titleLabel?.text)
-    }
 }
 
 extension AddNoteVC: UITextFieldDelegate {
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addNoteTextField.resignFirstResponder()
         if let delegate = delegate,
@@ -93,6 +89,5 @@ extension AddNoteVC: UITextFieldDelegate {
         }
         return true
     }
-
 }
 

@@ -23,6 +23,7 @@ class RootVC: UIViewController, AddNoteDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
         notes = Dao().unarchiveNotes() ?? [Note]()
         configureSearchBar()
     }
@@ -37,12 +38,12 @@ class RootVC: UIViewController, AddNoteDelegate {
     // MARK: Actions
     @IBAction func addNoteTapped(_ sender: UIBarButtonItem) {
         let addNoteVC = AddNoteVC(delegate: self)
-        addNoteVC.delegate = self
+        addNoteVC.note = nil
         navigationController?.pushViewController(addNoteVC, animated: true)
     }
 }
 
-extension RootVC: UITableViewDataSource, SwipeTableViewCellDelegate {
+extension RootVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate {
 
     //MARK: TableViewDataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,6 +63,15 @@ extension RootVC: UITableViewDataSource, SwipeTableViewCellDelegate {
         cell.textLabel?.text = note.title
         cell.backgroundColor = Priority(rawValue: note.priority)?.color()
         return cell
+    }
+
+    //MARK: TableViewDelegate
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = notes[indexPath.row]
+        let addNoteVC = AddNoteVC(delegate: self)
+        addNoteVC.note = note
+        navigationController?.pushViewController(addNoteVC, animated: true)
     }
 
     //MARK: SwipeTableViewCell
