@@ -19,6 +19,7 @@ class AddNoteVC: UIViewController {
     
     var delegate: AddNoteDelegate?
     var note: Note?
+    private var noteSaveTapped = false
     private var datePicker = UIDatePicker()
 
     init(delegate: AddNoteDelegate) {
@@ -39,6 +40,13 @@ class AddNoteVC: UIViewController {
         setUpDatePicker()
         setUpPrioritiesView()
         addNoteTextField.text = note != nil ? note?.title : ""
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if !noteSaveTapped {
+            saveNote()
+        }
     }
 
     private func setUpPrioritiesView() {
@@ -62,6 +70,14 @@ class AddNoteVC: UIViewController {
         dateTextField.inputView = datePicker
     }
 
+    private func saveNote() {
+        if let delegate = delegate,
+            let textFieldText = addNoteTextField.text,
+            let note = Note(title: textFieldText, priority: "Now") {
+            delegate.add(note: note)
+        }
+    }
+
     @objc private func doneButtonTapped(){
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
@@ -80,13 +96,10 @@ class AddNoteVC: UIViewController {
 
 extension AddNoteVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        noteSaveTapped = true
         addNoteTextField.resignFirstResponder()
-        if let delegate = delegate,
-            let textFieldText = addNoteTextField.text,
-            let note = Note(title: textFieldText, priority: "Now") {
-            delegate.add(note: note)
-            navigationController?.popViewController(animated: true)
-        }
+        saveNote()
+        navigationController?.popViewController(animated: true)
         return true
     }
 }
