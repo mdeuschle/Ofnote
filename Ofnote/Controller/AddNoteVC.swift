@@ -18,7 +18,7 @@ class AddNoteVC: UIViewController {
 
     var delegate: AddNoteDelegate?
     var note: Note?
-    var priority: Priority?
+    var priority: Priority = .now
     private var noteSaveTapped = false
 
     init(delegate: AddNoteDelegate) {
@@ -37,7 +37,7 @@ class AddNoteVC: UIViewController {
         setUpPrioritiesView()
         setUpReminderButton()
         addNoteTextField.text = note != nil ? note?.title : ""
-        view.backgroundColor = priority?.color() ?? .red
+        setUpBackgroundColor()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,9 +52,12 @@ class AddNoteVC: UIViewController {
         navigationItem.rightBarButtonItem = button
     }
 
-    @objc private func reminderButtonTapped(_ sender: UIBarButtonItem) {
-        let reminderVC = ReminderVC(nibName: "ReminderVC", bundle: nil)
-        navigationController?.pushViewController(reminderVC, animated: true)
+    private func setUpBackgroundColor() {
+        if let note = note {
+            view.backgroundColor = Priority(rawValue: note.priority)?.color()
+        } else {
+            view.backgroundColor = Priority(rawValue: "Now")?.color()
+        }
     }
 
     private func setUpPrioritiesView() {
@@ -69,9 +72,14 @@ class AddNoteVC: UIViewController {
     private func saveNote() {
         if let delegate = delegate,
             let textFieldText = addNoteTextField.text,
-            let note = Note(title: textFieldText, priority: priority?.rawValue ?? "Red") {
+            let note = Note(title: textFieldText, priority: priority.rawValue) {
             delegate.add(note: note)
         }
+    }
+
+    @objc private func reminderButtonTapped(_ sender: UIBarButtonItem) {
+        let reminderVC = ReminderVC(nibName: "ReminderVC", bundle: nil)
+        navigationController?.pushViewController(reminderVC, animated: true)
     }
 
     @IBAction func priorityButtonTapped(_ sender: UIButton) {
@@ -79,8 +87,11 @@ class AddNoteVC: UIViewController {
             let text = label.text else {
                 return
         }
-        priority = Priority(rawValue: text)
-        view.backgroundColor = priority?.color()
+        guard let priority = Priority(rawValue: text) else {
+            return
+        }
+        self.priority = priority
+        view.backgroundColor = priority.color()
     }
 }
 

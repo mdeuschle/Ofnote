@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct Note: Codable {
+class Note: Codable {
     let title: String
-    let priority: Priority.RawValue
+    var priority: Priority.RawValue
     let dateCreated = Date()
 
     init?(title: String, priority: Priority.RawValue) {
