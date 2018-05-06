@@ -18,6 +18,7 @@ class AddNoteVC: UIViewController {
 
     var delegate: AddNoteDelegate?
     var note: Note?
+    var priority: Priority?
     private var noteSaveTapped = false
 
     init(delegate: AddNoteDelegate) {
@@ -36,6 +37,7 @@ class AddNoteVC: UIViewController {
         setUpPrioritiesView()
         setUpReminderButton()
         addNoteTextField.text = note != nil ? note?.title : ""
+        view.backgroundColor = priority?.color() ?? .red
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,13 +69,18 @@ class AddNoteVC: UIViewController {
     private func saveNote() {
         if let delegate = delegate,
             let textFieldText = addNoteTextField.text,
-            let note = Note(title: textFieldText, priority: "Now") {
+            let note = Note(title: textFieldText, priority: priority?.rawValue ?? "Red") {
             delegate.add(note: note)
         }
     }
 
     @IBAction func priorityButtonTapped(_ sender: UIButton) {
-        print(sender.titleLabel?.text)
+        guard let label = sender.titleLabel,
+            let text = label.text else {
+                return
+        }
+        priority = Priority(rawValue: text)
+        view.backgroundColor = priority?.color()
     }
 }
 
