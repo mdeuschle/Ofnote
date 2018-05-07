@@ -28,6 +28,12 @@ class RootVC: UIViewController, AddNoteDelegate {
         configureSearchBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.searchController?.searchBar.showsCancelButton = false
+        navigationItem.searchController?.searchBar.text = ""
+    }
+
     func add(note: Note) {
         notes.append(note)
         notes.sort(by: { $0.dateCreated > $1.dateCreated })
@@ -69,7 +75,7 @@ extension RootVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let note = notes[indexPath.row]
+        let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
         let addNoteVC = AddNoteVC(delegate: self)
         addNoteVC.note = note
         navigationController?.pushViewController(addNoteVC, animated: true)
@@ -90,7 +96,6 @@ extension RootVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
         options.expansionStyle = .destructive
         return options
     }
-
 }
 
 extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
@@ -103,6 +108,8 @@ extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
     }
 
     func updateSearchResults(for searchController: UISearchController) {
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
             filteredNotes = notes.filter { $0.title.lowercased().contains(text.lowercased()) }
