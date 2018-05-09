@@ -11,8 +11,10 @@ import UIKit
 
 class ReminderVC: UIViewController {
 
-    @IBOutlet weak var reminderTableView: UITableView!
-
+    @IBOutlet private weak var reminderTableView: UITableView!
+    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePickerHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reminderTableView.dataSource = self
@@ -29,7 +31,7 @@ extension ReminderVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,6 +47,10 @@ extension ReminderVC: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

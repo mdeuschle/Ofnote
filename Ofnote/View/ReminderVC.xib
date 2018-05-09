@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReminderVC" customModule="Ofnote" customModuleProvider="target">
             <connections>
+                <outlet property="datePicker" destination="53R-aX-TaN" id="lMw-ZE-fSW"/>
+                <outlet property="datePickerHeight" destination="evd-Hz-WzG" id="ffb-Lh-RC0"/>
                 <outlet property="reminderTableView" destination="hdj-rU-io5" id="IZs-jU-fOB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,11 +27,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="53R-aX-TaN">
+                    <rect key="frame" x="0.0" y="347" width="375" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="evd-Hz-WzG"/>
+                    </constraints>
+                    <date key="date" timeIntervalSinceReferenceDate="547529739.81924605">
+                        <!--2018-05-09 03:35:39 +0000-->
+                    </date>
+                </datePicker>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="hdj-rU-io5" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="8T0-4B-g6c"/>
+                <constraint firstItem="53R-aX-TaN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Pjt-Lm-P80"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="53R-aX-TaN" secondAttribute="bottom" constant="20" id="R8D-ew-Ki3"/>
                 <constraint firstItem="hdj-rU-io5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Sj3-H8-qTi"/>
+                <constraint firstItem="53R-aX-TaN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aP0-H6-gBY"/>
                 <constraint firstItem="hdj-rU-io5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g0u-gV-hmf"/>
                 <constraint firstItem="hdj-rU-io5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="mt6-Py-5oe"/>
             </constraints>
