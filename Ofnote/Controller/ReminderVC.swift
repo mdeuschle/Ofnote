@@ -14,6 +14,8 @@ class ReminderVC: UIViewController {
     @IBOutlet private weak var reminderTableView: UITableView!
     @IBOutlet private weak var datePicker: UIDatePicker!
     @IBOutlet private weak var datePickerHeight: NSLayoutConstraint!
+
+    var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +37,11 @@ extension ReminderVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderCell", for: indexPath) as? ReminderCell else {
-            print("NOPE")
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderCell", for: indexPath) as? ReminderCell,
+            let note = note else {
+                return UITableViewCell()
         }
+        cell.configure(note: note)
         return cell
     }
 }
@@ -47,10 +50,6 @@ extension ReminderVC: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

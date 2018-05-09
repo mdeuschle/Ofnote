@@ -79,6 +79,7 @@ class AddNoteVC: UIViewController {
 
     @objc private func reminderButtonTapped(_ sender: UIBarButtonItem) {
         let reminderVC = ReminderVC(nibName: "ReminderVC", bundle: nil)
+        reminderVC.note = note
         navigationController?.pushViewController(reminderVC, animated: true)
     }
 
