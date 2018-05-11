@@ -9,9 +9,9 @@
 import UIKit
 
 class Note: Codable {
-    let title: String
+    var title: String
     var priority: Priority.RawValue
-    let dateCreated = Date()
+    var dateCreated: Date
 
     init?(title: String, priority: Priority.RawValue) {
         if title == "" {
@@ -19,5 +19,6 @@ class Note: Codable {
         }
         self.title = title
         self.priority = priority
+        self.dateCreated = Date()
     }
 }

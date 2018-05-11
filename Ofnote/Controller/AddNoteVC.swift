@@ -19,7 +19,6 @@ class AddNoteVC: UIViewController {
     var delegate: AddNoteDelegate?
     var note: Note?
     var priority: Priority = .now
-    private var noteSaveTapped = false
 
     init(delegate: AddNoteDelegate) {
         self.delegate = delegate
@@ -40,13 +39,6 @@ class AddNoteVC: UIViewController {
         setUpBackgroundColor()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if !noteSaveTapped && note == nil {
-            saveNote()
-        }
-    }
-    
     private func setUpReminderButton() {
         let button = UIBarButtonItem(title: "Reminder", style: .plain, target: self, action: #selector(reminderButtonTapped(_:)))
         navigationItem.rightBarButtonItem = button
@@ -72,8 +64,13 @@ class AddNoteVC: UIViewController {
     private func saveNote() {
         if let delegate = delegate,
             let textFieldText = addNoteTextField.text,
-            let note = Note(title: textFieldText, priority: priority.rawValue) {
-            delegate.add(note: note)
+            let newNote = Note(title: textFieldText, priority: priority.rawValue) {
+            if let note = note {
+                note.title = textFieldText
+                note.priority = priority.rawValue
+            } else {
+                delegate.add(note: newNote)
+            }
         }
     }
 
@@ -98,9 +95,8 @@ class AddNoteVC: UIViewController {
 
 extension AddNoteVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        noteSaveTapped = true
-        addNoteTextField.resignFirstResponder()
         saveNote()
+        addNoteTextField.resignFirstResponder()
         navigationController?.popViewController(animated: true)
         return true
     }
