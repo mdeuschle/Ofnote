@@ -34,14 +34,8 @@ class AddNoteVC: UIViewController {
         addNoteTextField.delegate = self
         addNoteTextField.enablesReturnKeyAutomatically = true
         setUpPrioritiesView()
-        setUpReminderButton()
         addNoteTextField.text = note != nil ? note?.title : ""
         setUpBackgroundColor()
-    }
-
-    private func setUpReminderButton() {
-        let button = UIBarButtonItem(title: "Reminder", style: .plain, target: self, action: #selector(reminderButtonTapped(_:)))
-        navigationItem.rightBarButtonItem = button
     }
 
     private func setUpBackgroundColor() {
@@ -72,12 +66,6 @@ class AddNoteVC: UIViewController {
                 delegate.add(note: newNote)
             }
         }
-    }
-
-    @objc private func reminderButtonTapped(_ sender: UIBarButtonItem) {
-        let reminderVC = ReminderVC(nibName: "ReminderVC", bundle: nil)
-        reminderVC.note = note
-        navigationController?.pushViewController(reminderVC, animated: true)
     }
 
     @IBAction func priorityButtonTapped(_ sender: UIButton) {

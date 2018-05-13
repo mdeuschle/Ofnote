@@ -7,118 +7,46 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class RootVC: UIViewController, AddNoteDelegate {
+class RootVC: SwipeVC, AddNoteDelegate {
 
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var addNoteToolBar: UIToolbar!
+    private var notes: [Note]?
 
-    // MARK: Private Properties
-    private var notes = [Note]()
-    private var filteredNotes = [Note]()
-    private var isFiltering = false
-
-    // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        notes = Dao().unarchiveNotes() ?? [Note]()
-        configureSearchBar()
+        tableView.separatorStyle = .none
+        setUpAddNoteButton()
+        loadNotes()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.searchController?.searchBar.showsCancelButton = false
-        navigationItem.searchController?.searchBar.text = ""
-    }
-
-    func add(note: Note) {
-        notes.append(note)
-        notes.sort(by: { $0.dateCreated > $1.dateCreated })
-        Dao().archive(notes: notes)
+    private func loadNotes() {
+        notes = Dao().unarchiveNotes()
         tableView.reloadData()
     }
 
-    // MARK: Actions
-    @IBAction func addNoteTapped(_ sender: UIBarButtonItem) {
+    private func setUpAddNoteButton() {
+        let cgRect = CGRect(x: 0, y: view.bounds.size.height - 50, width: view.frame.width, height: 50)
+        let button = UIButton(type: .system)
+        button.frame = cgRect
+        button.backgroundColor = .darkGray
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Add Item", for: .normal)
+        button.addTarget(self, action: #selector(addItemTapped(_:)), for: .touchUpInside)
+        navigationController?.view.addSubview(button)
+    }
+
+    @objc private func addItemTapped(_ sender: UIButton) {
         let addNoteVC = AddNoteVC(delegate: self)
         addNoteVC.note = nil
         navigationController?.pushViewController(addNoteVC, animated: true)
     }
-}
 
-extension RootVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate {
+    // AddNote Delegate Method
+    func add(note: Note) {
 
-    //MARK: TableViewDataSource
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredNotes.count : notes.count
-    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? SwipeTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.delegate = self
-        let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
-        cell.textLabel?.text = note.title
-        cell.backgroundColor = Priority(rawValue: note.priority)?.color()
-        return cell
-    }
-
-    //MARK: TableViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
-        let addNoteVC = AddNoteVC(delegate: self)
-        addNoteVC.note = note
-        navigationController?.pushViewController(addNoteVC, animated: true)
-    }
-
-    //MARK: SwipeTableViewCell
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            self.notes.remove(at: indexPath.row)
-            Dao().archive(notes: self.notes)
-        }
-        return [deleteAction]
-    }
-
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        var options = SwipeTableOptions()
-        options.expansionStyle = .destructive
-        return options
-    }
-}
-
-extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
-
-    private func configureSearchBar() {
-        let searchBarController = UISearchController(searchResultsController: nil)
-        searchBarController.delegate = self
-        searchBarController.searchResultsUpdater = self
-        navigationItem.searchController = searchBarController
-    }
-
-    func updateSearchResults(for searchController: UISearchController) {
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        if let text = searchController.searchBar.text, !text.isEmpty {
-            isFiltering = true
-            filteredNotes = notes.filter { $0.title.lowercased().contains(text.lowercased()) }
-        } else {
-            isFiltering = false
-            filteredNotes = notes
-        }
-        tableView.reloadData()
-    }
 }
 
 
