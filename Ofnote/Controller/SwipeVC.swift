@@ -16,8 +16,6 @@ class SwipeVC: UITableViewController, SwipeTableViewCellDelegate {
         tableView.rowHeight = 80
     }
 
-    //MARK: TableView Delegate Methods
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? SwipeTableViewCell else {
             return UITableViewCell()
@@ -33,7 +31,6 @@ class SwipeVC: UITableViewController, SwipeTableViewCellDelegate {
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             self.updateModel(at: indexPath)
         }
-        deleteAction.image = #imageLiteral(resourceName: "delete-icon")
         return [deleteAction]
     }
 
@@ -43,5 +40,5 @@ class SwipeVC: UITableViewController, SwipeTableViewCellDelegate {
         return options
     }
 
-    func updateModel(at: IndexPath) { }
+    func updateModel(at indexPath: IndexPath) { }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class RootVC: SwipeVC, AddNoteDelegate {
 
-    private var notes: [Note]?
+    private var notes = [Note]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class RootVC: SwipeVC, AddNoteDelegate {
     }
 
     private func loadNotes() {
-        notes = Dao().unarchiveNotes()
+        notes = Dao().unarchiveNotes() ?? [Note]()
         tableView.reloadData()
     }
 
@@ -43,10 +43,33 @@ class RootVC: SwipeVC, AddNoteDelegate {
 
     // AddNote Delegate Method
     func add(note: Note) {
-
+        notes.append(note)
+        Dao().archive(notes: notes)
+        notes.sort { $0.dateCreated > $1.dateCreated }
+        tableView.reloadData()
     }
 
+    override func updateModel(at indexPath: IndexPath) {
+        notes.remove(at: indexPath.row)
+        Dao().archive(notes: notes)
+    }
 
+    // TableView DataSource Methods
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return notes.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let note = notes[indexPath.row]
+        cell.textLabel?.text = note.title
+        cell.backgroundColor = Priority(rawValue: note.priority)?.color()
+        return cell
+    }
 }
 
 
