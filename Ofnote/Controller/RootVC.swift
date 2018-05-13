@@ -13,14 +13,26 @@ class RootVC: SwipeVC, AddNoteDelegate {
     private var notes = [Note]()
     private var filteredNotes = [Note]()
     private var isFiltering = false
+    let addNoteButton = UIButton(type: .system)
 
     //MARK: Lifecyle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
-        setUpAddNoteButton()
         loadNotes()
         setUpSearchBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.searchController?.searchBar.showsCancelButton = false
+        navigationItem.searchController?.searchBar.text = ""
+        setUpAddNoteButton()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        addNoteButton.removeFromSuperview()
     }
 
     //MARK: Private methods
@@ -31,13 +43,12 @@ class RootVC: SwipeVC, AddNoteDelegate {
 
     private func setUpAddNoteButton() {
         let cgRect = CGRect(x: 0, y: view.bounds.size.height - 50, width: view.frame.width, height: 50)
-        let button = UIButton(type: .system)
-        button.frame = cgRect
-        button.backgroundColor = .darkGray
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Add Item", for: .normal)
-        button.addTarget(self, action: #selector(addItemTapped(_:)), for: .touchUpInside)
-        navigationController?.view.addSubview(button)
+        addNoteButton.frame = cgRect
+        addNoteButton.backgroundColor = .darkGray
+        addNoteButton.setTitleColor(.white, for: .normal)
+        addNoteButton.setTitle("Add Item", for: .normal)
+        addNoteButton.addTarget(self, action: #selector(addItemTapped(_:)), for: .touchUpInside)
+        navigationController?.view.addSubview(addNoteButton)
     }
 
     @objc private func addItemTapped(_ sender: UIButton) {
@@ -77,6 +88,15 @@ class RootVC: SwipeVC, AddNoteDelegate {
         cell.backgroundColor = Priority(rawValue: note.priority)?.color()
         return cell
     }
+
+    //MARK: TableView Delegate Methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
+        let addNoteVC = AddNoteVC(delegate: self)
+        addNoteVC.note = note
+        navigationController?.pushViewController(addNoteVC, animated: true)
+    }
 }
 
 extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
@@ -90,6 +110,7 @@ extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         if let text = searchController.searchBar.text, !text.isEmpty {
             isFiltering = true
             filteredNotes = notes.filter {
