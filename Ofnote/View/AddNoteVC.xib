@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNoteVC" customModule="Ofnote" customModuleProvider="target">
             <connections>
                 <outlet property="addNoteTextField" destination="52B-Jl-JHd" id="lRA-Cs-n1C"/>
+                <outlet property="addReminderTextField" destination="Klh-xQ-CES" id="4BG-NB-v7C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,12 +28,21 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add Reminder" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klh-xQ-CES">
+                    <rect key="frame" x="16" y="58" width="343" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="52B-Jl-JHd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6gS-2f-Y2Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="52B-Jl-JHd" secondAttribute="trailing" constant="16" id="EPU-e6-HeB"/>
                 <constraint firstItem="52B-Jl-JHd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Kl1-cl-oUU"/>
+                <constraint firstItem="Klh-xQ-CES" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="SJH-j3-JWd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Klh-xQ-CES" secondAttribute="trailing" constant="16" id="ZVJ-JE-paf"/>
+                <constraint firstItem="Klh-xQ-CES" firstAttribute="top" secondItem="52B-Jl-JHd" secondAttribute="bottom" constant="8" id="vy0-ec-lqV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="134.5" y="53.5"/>

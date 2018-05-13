@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
 		A846CFDE20A76E6700399BBA /* SwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CFDD20A76E6700399BBA /* SwipeVC.swift */; };
+		A846CFFF20A8C82300399BBA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CFFE20A8C82300399BBA /* Date.swift */; };
 		A863235E2095411200BE1CB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863235D2095411200BE1CB7 /* Priority.swift */; };
 		A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
@@ -26,6 +27,7 @@
 		611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ofnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A846CFDD20A76E6700399BBA /* SwipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeVC.swift; sourceTree = "<group>"; };
+		A846CFFE20A8C82300399BBA /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A863235D2095411200BE1CB7 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -84,11 +86,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A812ED51208EBAD60061FDA7 /* Services */ = {
+		A846CFFD20A8C78C00399BBA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A846CFFE20A8C82300399BBA /* Date.swift */,
 			);
-			path = Services;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A8D958A0208EB8D40072DD5D = {
@@ -112,10 +115,10 @@
 		A8D958AB208EB8D50072DD5D /* Ofnote */ = {
 			isa = PBXGroup;
 			children = (
-				A812ED51208EBAD60061FDA7 /* Services */,
 				A812ED50208EBAD00061FDA7 /* Model */,
 				A812ED4F208EBACA0061FDA7 /* View */,
 				A812ED4E208EBABF0061FDA7 /* Controller */,
+				A846CFFD20A8C78C00399BBA /* Extensions */,
 				A8D958AC208EB8D50072DD5D /* AppDelegate.swift */,
 				A8D958B3208EB8D50072DD5D /* Assets.xcassets */,
 				A8D958B5208EB8D50072DD5D /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 				A8D19EFE2090300900F32A9C /* Dao.swift in Sources */,
 				A8D958AF208EB8D50072DD5D /* RootVC.swift in Sources */,
 				A846CFDE20A76E6700399BBA /* SwipeVC.swift in Sources */,
+				A846CFFF20A8C82300399BBA /* Date.swift in Sources */,
 				A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */,
 				A8D958AD208EB8D50072DD5D /* AppDelegate.swift in Sources */,
 				A812ED53208EBCED0061FDA7 /* Note.swift in Sources */,

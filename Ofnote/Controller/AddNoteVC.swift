@@ -15,10 +15,12 @@ import UIKit
 class AddNoteVC: UIViewController {
 
     @IBOutlet weak var addNoteTextField: UITextField!
+    @IBOutlet weak var addReminderTextField: UITextField!
 
     var delegate: AddNoteDelegate?
     var note: Note?
     var priority: Priority = .now
+    private var datePicker: UIDatePicker!
 
     init(delegate: AddNoteDelegate) {
         self.delegate = delegate
@@ -32,6 +34,7 @@ class AddNoteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addNoteTextField.delegate = self
+        addReminderTextField.delegate = self
         addNoteTextField.enablesReturnKeyAutomatically = true
         setUpPrioritiesView()
         addNoteTextField.text = note != nil ? note?.title : ""
@@ -87,6 +90,18 @@ extension AddNoteVC: UITextFieldDelegate {
         addNoteTextField.resignFirstResponder()
         navigationController?.popViewController(animated: true)
         return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == addReminderTextField {
+            update(addReminderTextField: textField)
+        }
+    }
+
+    private func update(addReminderTextField: UITextField) {
+        let cgRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 320)
+        datePicker = UIDatePicker(frame: cgRect)
+        addReminderTextField.inputView = datePicker
     }
 }
 
