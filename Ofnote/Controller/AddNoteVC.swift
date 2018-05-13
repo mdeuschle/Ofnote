@@ -99,9 +99,24 @@ extension AddNoteVC: UITextFieldDelegate {
     }
 
     private func update(addReminderTextField: UITextField) {
-        let cgRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 320)
+        let cgRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 216)
         datePicker = UIDatePicker(frame: cgRect)
         addReminderTextField.inputView = datePicker
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
+        let spacerButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped(_:)))
+        toolBar.setItems([doneButton, spacerButton, cancelButton], animated: false)
+        addReminderTextField.inputAccessoryView = toolBar
+    }
+
+    @objc private func doneTapped(_ sender: UIBarButtonItem) {
+        print(sender.title)
+    }
+
+    @objc private func cancelTapped(_ sender: UIBarButtonItem) {
+        print(sender.title)
     }
 }
 
