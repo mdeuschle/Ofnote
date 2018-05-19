@@ -59,6 +59,9 @@ class RootVC: SwipeVC, AddNoteDelegate {
 
     //MARK: AddNote Delegate Method
     func add(note: Note) {
+        if let index = notes.index(where: { $0 === note }) {
+            notes.remove(at: index)
+        }
         notes.append(note)
         Dao().archive(notes: notes)
         notes.sort { $0.dateCreated > $1.dateCreated }
@@ -85,7 +88,7 @@ class RootVC: SwipeVC, AddNoteDelegate {
         let row = indexPath.row
         let note = isFiltering ? filteredNotes[row] : notes[row]
         cell.textLabel?.text = note.title
-        cell.backgroundColor = Priority(rawValue: note.priority)?.color()
+        cell.backgroundColor = Priority(rawValue: note.priorityRawValue)?.color()
         return cell
     }
 

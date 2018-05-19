@@ -6,19 +6,19 @@
 //  Copyright © 2018 Matt Deuschle. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Note: Codable {
     var title: String
-    var priority: Priority.RawValue
-    var dateCreated: Date
+    var priorityRawValue = "Now"
+    let dateCreated: Date
+    var reminderDate: Date?
 
-    init?(title: String, priority: Priority.RawValue) {
+    init?(title: String) {
         if title == "" {
             return nil
         }
         self.title = title
-        self.priority = priority
-        self.dateCreated = Date()
+        dateCreated = Date()
     }
 }

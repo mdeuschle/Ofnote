@@ -19,9 +19,11 @@ class AddNoteVC: UIViewController {
 
     var delegate: AddNoteDelegate?
     var note: Note?
-    var priority: Priority = .now
+    private var priority: Priority?
+    private var reminderDate: Date?
     private var datePicker: UIDatePicker!
 
+    //MARK: Lifecycle
     init(delegate: AddNoteDelegate) {
         self.delegate = delegate
         super.init(nibName: "AddNoteVC", bundle: nil)
@@ -37,16 +39,42 @@ class AddNoteVC: UIViewController {
         addReminderTextField.delegate = self
         addNoteTextField.enablesReturnKeyAutomatically = true
         setUpPrioritiesView()
-        addNoteTextField.text = note != nil ? note?.title : ""
-        setUpBackgroundColor()
+        configureNote()
+        configureDoneBarButton()
     }
 
-    private func setUpBackgroundColor() {
-        if let note = note {
-            view.backgroundColor = Priority(rawValue: note.priority)?.color()
-        } else {
-            view.backgroundColor = Priority(rawValue: "Now")?.color()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveNote()
+    }
+
+    //MARK: Private methods
+    private func configureNote() {
+        guard let note = note else {
+            addReminderTextField.text = ""
+            addReminderTextField.text = ""
+            priority = Priority(rawValue: "Now")
+            view.backgroundColor = priority?.color()
+            return
         }
+        priority = Priority(rawValue: note.priorityRawValue)
+        addNoteTextField.text = note.title
+        view.backgroundColor = priority?.color()
+        if let reminderDate = note.reminderDate {
+            self.reminderDate = reminderDate
+            addReminderTextField.text = reminderDate.format
+        } else {
+            addReminderTextField.text = ""
+        }
+    }
+
+    private func configureDoneBarButton() {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = button
+    }
+
+    @objc private func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
     }
 
     private func setUpPrioritiesView() {
@@ -59,13 +87,24 @@ class AddNoteVC: UIViewController {
     }
 
     private func saveNote() {
-        if let delegate = delegate,
-            let textFieldText = addNoteTextField.text,
-            let newNote = Note(title: textFieldText, priority: priority.rawValue) {
-            if let note = note {
-                note.title = textFieldText
-                note.priority = priority.rawValue
-            } else {
+        guard let delegate = delegate,
+        let textFieldText = addNoteTextField.text,
+            !textFieldText.isEmpty else {
+                return
+        }
+        if let note = note {
+            note.title = textFieldText
+            note.priorityRawValue = priority!.rawValue
+            if let reminderDate = self.reminderDate {
+                note.reminderDate = reminderDate
+                delegate.add(note: note)
+            }
+        } else {
+            if let newNote = Note(title: textFieldText) {
+                newNote.priorityRawValue = priority!.rawValue
+                if let reminderDate = self.reminderDate {
+                    newNote.reminderDate = reminderDate
+                }
                 delegate.add(note: newNote)
             }
         }
@@ -86,7 +125,6 @@ class AddNoteVC: UIViewController {
 
 extension AddNoteVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        saveNote()
         addNoteTextField.resignFirstResponder()
         navigationController?.popViewController(animated: true)
         return true
@@ -101,6 +139,7 @@ extension AddNoteVC: UITextFieldDelegate {
     private func update(addReminderTextField: UITextField) {
         let cgRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 216)
         datePicker = UIDatePicker(frame: cgRect)
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         addReminderTextField.inputView = datePicker
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -111,12 +150,27 @@ extension AddNoteVC: UITextFieldDelegate {
         addReminderTextField.inputAccessoryView = toolBar
     }
 
+    @objc private func dateChanged() {
+        addReminderTextField.text = datePicker.date.format
+    }
+
     @objc private func doneTapped(_ sender: UIBarButtonItem) {
-        print(sender.title)
+        addReminderTextField.text = datePicker.date.format
+        reminderDate = datePicker.date
+        addReminderTextField.resignFirstResponder()
+        if addNoteTextField.text == "" {
+            addNoteTextField.becomeFirstResponder()
+        }
     }
 
     @objc private func cancelTapped(_ sender: UIBarButtonItem) {
-        print(sender.title)
+        if let note = note, let reminderDate = note.reminderDate {
+            addReminderTextField.text = reminderDate.format
+        } else {
+            addReminderTextField.text = ""
+        }
+        addReminderTextField.resignFirstResponder()
     }
 }
+
 
