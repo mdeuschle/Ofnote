@@ -69,11 +69,18 @@ class RootVC: UITableViewController, AddNoteDelegate {
         tableView.reloadData()
     }
 
-    //MARK: Remove note
-//    override func updateModel(at indexPath: IndexPath) {
-//        notes.remove(at: indexPath.row)
-//        Dao().archive(notes: notes)
-//    }
+    // MARK: Remove note
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            Dao().archive(notes: notes)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
     //MARK: TableView DataSource Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
