@@ -16,12 +16,13 @@ class AddNoteVC: UIViewController {
 
     @IBOutlet weak var addNoteTextField: UITextField!
     @IBOutlet weak var addReminderTextField: UITextField!
-
+    
     var delegate: AddNoteDelegate?
     var note: Note?
     private var priority: Priority?
     private var reminderDate: Date?
     private var datePicker: UIDatePicker!
+    private var doneBarButtonItem: UIBarButtonItem!
 
     //MARK: Lifecycle
     init(delegate: AddNoteDelegate) {
@@ -69,8 +70,9 @@ class AddNoteVC: UIViewController {
     }
 
     private func configureDoneBarButton() {
-        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTapped(_:)))
-        navigationItem.rightBarButtonItem = button
+        doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTapped(_:)))
+        doneBarButtonItem.isEnabled = true
+        navigationItem.rightBarButtonItem = doneBarButtonItem
     }
 
     @objc private func doneBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -133,13 +135,14 @@ extension AddNoteVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == addReminderTextField {
             update(addReminderTextField: textField)
+            doneBarButtonItem.isEnabled = false
         }
     }
 
     private func update(addReminderTextField: UITextField) {
         let cgRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 216)
         datePicker = UIDatePicker(frame: cgRect)
-        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+        datePicker.minimumDate = Date()
         addReminderTextField.inputView = datePicker
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -150,20 +153,18 @@ extension AddNoteVC: UITextFieldDelegate {
         addReminderTextField.inputAccessoryView = toolBar
     }
 
-    @objc private func dateChanged() {
-        addReminderTextField.text = datePicker.date.format
-    }
-
     @objc private func doneTapped(_ sender: UIBarButtonItem) {
         addReminderTextField.text = datePicker.date.format
         reminderDate = datePicker.date
         addReminderTextField.resignFirstResponder()
+        doneBarButtonItem.isEnabled = true
         if addNoteTextField.text == "" {
             addNoteTextField.becomeFirstResponder()
         }
     }
 
     @objc private func cancelTapped(_ sender: UIBarButtonItem) {
+        doneBarButtonItem.isEnabled = true
         if let note = note, let reminderDate = note.reminderDate {
             addReminderTextField.text = reminderDate.format
         } else {

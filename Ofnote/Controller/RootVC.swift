@@ -84,10 +84,12 @@ class RootVC: SwipeVC, AddNoteDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        guard let cell = super.tableView(tableView, cellForRowAt: indexPath) as? SwipeCell else {
+            return UITableViewCell()
+        }
         let row = indexPath.row
         let note = isFiltering ? filteredNotes[row] : notes[row]
-        cell.textLabel?.text = note.title
+        cell.configure(note: note)
         cell.backgroundColor = Priority(rawValue: note.priorityRawValue)?.color()
         return cell
     }

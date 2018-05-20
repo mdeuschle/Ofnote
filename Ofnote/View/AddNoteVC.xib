@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52B-Jl-JHd">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Add Note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52B-Jl-JHd">
                     <rect key="frame" x="16" y="36" width="343" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="yIA-Cx-ids"/>
@@ -36,7 +36,7 @@
                     <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="15"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klh-xQ-CES">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Add Reminder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klh-xQ-CES">
                     <rect key="frame" x="16" y="92" width="343" height="40"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -46,33 +46,15 @@
                     <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iip-xE-bnd">
-                    <rect key="frame" x="16" y="36" width="343" height="18"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Reminder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV6-Ca-Mzc">
-                    <rect key="frame" x="16" y="92" width="343" height="18"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Klh-xQ-CES" secondAttribute="trailing" constant="16" id="4AJ-6P-2xa"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jV6-Ca-Mzc" secondAttribute="trailing" constant="16" id="7hc-af-mdA"/>
-                <constraint firstItem="iip-xE-bnd" firstAttribute="top" secondItem="52B-Jl-JHd" secondAttribute="top" id="BuP-g2-obd"/>
                 <constraint firstItem="52B-Jl-JHd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Gkb-jU-Sng"/>
-                <constraint firstItem="iip-xE-bnd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="R1f-rd-K4I"/>
                 <constraint firstItem="Klh-xQ-CES" firstAttribute="top" secondItem="52B-Jl-JHd" secondAttribute="bottom" constant="16" id="XZ0-zd-sR1"/>
-                <constraint firstItem="jV6-Ca-Mzc" firstAttribute="top" secondItem="Klh-xQ-CES" secondAttribute="top" id="ZR3-gi-tT3"/>
                 <constraint firstItem="52B-Jl-JHd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="aeV-es-2hv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iip-xE-bnd" secondAttribute="trailing" constant="16" id="b4e-xD-HFf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="52B-Jl-JHd" secondAttribute="trailing" constant="16" id="cD7-gt-faK"/>
                 <constraint firstItem="Klh-xQ-CES" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fgL-IR-yUO"/>
-                <constraint firstItem="jV6-Ca-Mzc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ifD-Wt-U0y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="134.5" y="53.5"/>

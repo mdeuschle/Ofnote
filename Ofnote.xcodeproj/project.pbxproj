@@ -10,6 +10,7 @@
 		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
 		A846CFDE20A76E6700399BBA /* SwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CFDD20A76E6700399BBA /* SwipeVC.swift */; };
 		A846CFFF20A8C82300399BBA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CFFE20A8C82300399BBA /* Date.swift */; };
+		A846D00320B11FBD00399BBA /* SwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846D00220B11FBD00399BBA /* SwipeCell.swift */; };
 		A863235E2095411200BE1CB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863235D2095411200BE1CB7 /* Priority.swift */; };
 		A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
@@ -28,6 +29,7 @@
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A846CFDD20A76E6700399BBA /* SwipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeVC.swift; sourceTree = "<group>"; };
 		A846CFFE20A8C82300399BBA /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A846D00220B11FBD00399BBA /* SwipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCell.swift; sourceTree = "<group>"; };
 		A863235D2095411200BE1CB7 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				A8D958B0208EB8D50072DD5D /* Main.storyboard */,
 				A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */,
 				A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */,
+				A846D00220B11FBD00399BBA /* SwipeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				A8D19EFE2090300900F32A9C /* Dao.swift in Sources */,
 				A8D958AF208EB8D50072DD5D /* RootVC.swift in Sources */,
+				A846D00320B11FBD00399BBA /* SwipeCell.swift in Sources */,
 				A846CFDE20A76E6700399BBA /* SwipeVC.swift in Sources */,
 				A846CFFF20A8C82300399BBA /* Date.swift in Sources */,
 				A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */,
