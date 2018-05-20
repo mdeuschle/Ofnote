@@ -14,9 +14,9 @@ import UIKit
 
 class AddNoteVC: UIViewController {
 
-    @IBOutlet weak var addNoteTextField: UITextField!
     @IBOutlet weak var addReminderTextField: UITextField!
-    
+    @IBOutlet weak var addNoteTextView: UITextView!
+
     var delegate: AddNoteDelegate?
     var note: Note?
     private var priority: Priority?
@@ -36,9 +36,8 @@ class AddNoteVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addNoteTextField.delegate = self
         addReminderTextField.delegate = self
-        addNoteTextField.enablesReturnKeyAutomatically = true
+        addNoteTextView.delegate = self
         setUpPrioritiesView()
         configureNote()
         configureDoneBarButton()
@@ -59,7 +58,7 @@ class AddNoteVC: UIViewController {
             return
         }
         priority = Priority(rawValue: note.priorityRawValue)
-        addNoteTextField.text = note.title
+        addNoteTextView.text = note.title
         view.backgroundColor = priority?.color()
         if let reminderDate = note.reminderDate {
             self.reminderDate = reminderDate
@@ -85,24 +84,24 @@ class AddNoteVC: UIViewController {
                 return
         }
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
-        addNoteTextField.inputAccessoryView = accessoryView
+        addNoteTextView.inputAccessoryView = accessoryView
     }
 
     private func saveNote() {
         guard let delegate = delegate,
-        let textFieldText = addNoteTextField.text,
-            !textFieldText.isEmpty else {
+            let textViewText = addNoteTextView.text,
+            !textViewText.isEmpty else {
                 return
         }
         if let note = note {
-            note.title = textFieldText
+            note.title = textViewText
             note.priorityRawValue = priority!.rawValue
             if let reminderDate = self.reminderDate {
                 note.reminderDate = reminderDate
                 delegate.add(note: note)
             }
         } else {
-            if let newNote = Note(title: textFieldText) {
+            if let newNote = Note(title: textViewText) {
                 newNote.priorityRawValue = priority!.rawValue
                 if let reminderDate = self.reminderDate {
                     newNote.reminderDate = reminderDate
@@ -126,11 +125,6 @@ class AddNoteVC: UIViewController {
 }
 
 extension AddNoteVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        addNoteTextField.resignFirstResponder()
-        navigationController?.popViewController(animated: true)
-        return true
-    }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == addReminderTextField {
@@ -158,8 +152,8 @@ extension AddNoteVC: UITextFieldDelegate {
         reminderDate = datePicker.date
         addReminderTextField.resignFirstResponder()
         doneBarButtonItem.isEnabled = true
-        if addNoteTextField.text == "" {
-            addNoteTextField.becomeFirstResponder()
+        if addNoteTextView.text == "" {
+            addNoteTextView.becomeFirstResponder()
         }
     }
 
@@ -172,6 +166,14 @@ extension AddNoteVC: UITextFieldDelegate {
         }
         addReminderTextField.resignFirstResponder()
     }
+}
+
+extension AddNoteVC: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        doneBarButtonItem.isEnabled = true
+    }
+
 }
 
 

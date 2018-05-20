@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNoteVC" customModule="Ofnote" customModuleProvider="target">
             <connections>
-                <outlet property="addNoteTextField" destination="52B-Jl-JHd" id="lRA-Cs-n1C"/>
+                <outlet property="addNoteTextView" destination="Um3-08-zfG" id="aT4-j7-CKW"/>
                 <outlet property="addReminderTextField" destination="Klh-xQ-CES" id="4BG-NB-v7C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,37 +27,49 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Add Note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52B-Jl-JHd">
-                    <rect key="frame" x="16" y="36" width="343" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="yIA-Cx-ids"/>
-                    </constraints>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Add Reminder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klh-xQ-CES">
-                    <rect key="frame" x="16" y="92" width="343" height="40"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" borderStyle="line" placeholder="Add Reminder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klh-xQ-CES">
+                    <rect key="frame" x="56" y="108" width="295" height="44"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="wR3-XR-ovb"/>
+                        <constraint firstAttribute="height" constant="44" id="BbG-TH-ASp"/>
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Um3-08-zfG">
+                    <rect key="frame" x="24" y="20" width="327" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="7e6-iA-OuV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="4wW-Db-AhR">
+                    <rect key="frame" x="24" y="118" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="FiH-Oz-fWH"/>
+                        <constraint firstAttribute="width" constant="24" id="a8s-7x-6BU"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Klh-xQ-CES" secondAttribute="trailing" constant="16" id="4AJ-6P-2xa"/>
-                <constraint firstItem="52B-Jl-JHd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Gkb-jU-Sng"/>
-                <constraint firstItem="Klh-xQ-CES" firstAttribute="top" secondItem="52B-Jl-JHd" secondAttribute="bottom" constant="16" id="XZ0-zd-sR1"/>
-                <constraint firstItem="52B-Jl-JHd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="aeV-es-2hv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="52B-Jl-JHd" secondAttribute="trailing" constant="16" id="cD7-gt-faK"/>
-                <constraint firstItem="Klh-xQ-CES" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fgL-IR-yUO"/>
+                <constraint firstItem="Klh-xQ-CES" firstAttribute="top" secondItem="Um3-08-zfG" secondAttribute="bottom" constant="8" id="4vw-9y-dh9"/>
+                <constraint firstItem="4wW-Db-AhR" firstAttribute="centerY" secondItem="Klh-xQ-CES" secondAttribute="centerY" id="8fk-DR-kwP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Klh-xQ-CES" secondAttribute="trailing" constant="24" id="AQ9-Xp-QE9"/>
+                <constraint firstItem="Um3-08-zfG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="bhK-JS-Uh6"/>
+                <constraint firstItem="4wW-Db-AhR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="fdE-jc-I25"/>
+                <constraint firstItem="Um3-08-zfG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="k33-yi-ypb"/>
+                <constraint firstItem="Klh-xQ-CES" firstAttribute="leading" secondItem="4wW-Db-AhR" secondAttribute="trailing" constant="8" id="mO4-QD-7Jw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Um3-08-zfG" secondAttribute="trailing" constant="24" id="vKH-JA-t6K"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="134.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="clock_icon" width="30" height="30"/>
+    </resources>
 </document>

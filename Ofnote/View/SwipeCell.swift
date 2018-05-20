@@ -17,6 +17,16 @@ class SwipeCell: SwipeTableViewCell {
 
     func configure(note: Note) {
         noteTitleLabel.text = note.title
-        reminderLabel.text = note.reminderDate?.format
+        if let reminderDate = note.reminderDate {
+            reminderLabel.text = reminderDate.format
+            reminder(isHidden: false)
+        } else {
+            reminder(isHidden: true)
+        }
+    }
+
+    private func reminder(isHidden: Bool) {
+        reminderLabel.isHidden = isHidden
+        reminderImage.isHidden = isHidden
     }
 }
