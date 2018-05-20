@@ -5,6 +5,4 @@ target 'Ofnote' do
 
   # Pods for Ofnote
 
-  pod 'SwipeCellKit'
-
 end

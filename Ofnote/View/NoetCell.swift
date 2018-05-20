@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class SwipeCell: SwipeTableViewCell {
+class NoteCell: UITableViewCell {
 
     @IBOutlet weak var noteTitleLabel: UILabel!
     @IBOutlet weak var reminderImage: UIImageView!

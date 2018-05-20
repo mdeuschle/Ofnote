@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootVC: SwipeVC, AddNoteDelegate {
+class RootVC: UITableViewController, AddNoteDelegate {
 
     private var notes = [Note]()
     private var filteredNotes = [Note]()
@@ -21,6 +21,7 @@ class RootVC: SwipeVC, AddNoteDelegate {
         tableView.separatorStyle = .none
         loadNotes()
         setUpSearchBar()
+        tableView.rowHeight = 80
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,10 +70,10 @@ class RootVC: SwipeVC, AddNoteDelegate {
     }
 
     //MARK: Remove note
-    override func updateModel(at indexPath: IndexPath) {
-        notes.remove(at: indexPath.row)
-        Dao().archive(notes: notes)
-    }
+//    override func updateModel(at indexPath: IndexPath) {
+//        notes.remove(at: indexPath.row)
+//        Dao().archive(notes: notes)
+//    }
 
     //MARK: TableView DataSource Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,7 +85,8 @@ class RootVC: SwipeVC, AddNoteDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = super.tableView(tableView, cellForRowAt: indexPath) as? SwipeCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? NoteCell else {
+            print("NOPE")
             return UITableViewCell()
         }
         let row = indexPath.row
