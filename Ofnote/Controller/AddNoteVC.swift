@@ -22,7 +22,7 @@ class AddNoteVC: UIViewController {
     private var priority: Priority?
     private var reminderDate: Date?
     private var datePicker: UIDatePicker!
-    private var doneBarButtonItem: UIBarButtonItem!
+    private var saveBarButtonItem: UIBarButtonItem!
 
     //MARK: Lifecycle
     init(delegate: AddNoteDelegate) {
@@ -69,9 +69,9 @@ class AddNoteVC: UIViewController {
     }
 
     private func configureDoneBarButton() {
-        doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTapped(_:)))
-        doneBarButtonItem.isEnabled = true
-        navigationItem.rightBarButtonItem = doneBarButtonItem
+        saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(doneBarButtonTapped(_:)))
+        saveBarButtonItem.isEnabled = true
+        navigationItem.rightBarButtonItem = saveBarButtonItem
     }
 
     @objc private func doneBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -129,7 +129,7 @@ extension AddNoteVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == addReminderTextField {
             update(addReminderTextField: textField)
-            doneBarButtonItem.isEnabled = false
+            saveBarButtonItem.isEnabled = false
         }
     }
 
@@ -148,17 +148,27 @@ extension AddNoteVC: UITextFieldDelegate {
     }
 
     @objc private func doneTapped(_ sender: UIBarButtonItem) {
+        UserNotification.shared.requestNotificationPermission()
         addReminderTextField.text = datePicker.date.format
         reminderDate = datePicker.date
         addReminderTextField.resignFirstResponder()
-        doneBarButtonItem.isEnabled = true
+        saveBarButtonItem.isEnabled = true
         if addNoteTextView.text == "" {
             addNoteTextView.becomeFirstResponder()
+        }
+        if let date = reminderDate, let note = note {
+            UserNotification.shared.scheduleNotification(with: date, note: note) { success in
+                if success {
+                    print("Notification Added")
+                } else {
+                    print("Notification not added")
+                }
+            }
         }
     }
 
     @objc private func cancelTapped(_ sender: UIBarButtonItem) {
-        doneBarButtonItem.isEnabled = true
+        saveBarButtonItem.isEnabled = true
         if let note = note, let reminderDate = note.reminderDate {
             addReminderTextField.text = reminderDate.format
         } else {
@@ -171,7 +181,7 @@ extension AddNoteVC: UITextFieldDelegate {
 extension AddNoteVC: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        doneBarButtonItem.isEnabled = true
+        saveBarButtonItem.isEnabled = true
     }
 
 }
