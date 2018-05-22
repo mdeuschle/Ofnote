@@ -21,6 +21,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         tableView.separatorStyle = .none
         loadNotes()
         setUpSearchBar()
+        setUpSettingsButton()
         tableView.rowHeight = 80
     }
 
@@ -40,6 +41,20 @@ class RootVC: UITableViewController, AddNoteDelegate {
     private func loadNotes() {
         notes = Dao().unarchiveNotes() ?? [Note]()
         tableView.reloadData()
+    }
+
+    private func setUpSettingsButton() {
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(settingsButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = settingsButton
+        navigationController?.navigationBar.tintColor = .white
+    }
+
+    @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {
+        let settingsVC = SettingsVC(nibName: "SettingsVC", bundle: nil)
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 
     private func setUpAddNoteButton() {
