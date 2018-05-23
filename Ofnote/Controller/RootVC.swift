@@ -15,7 +15,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
     private var isFiltering = false
     let addNoteButton = UIButton(type: .system)
 
-    //MARK: Lifecyle
+    // MARK: - Lifecyle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
@@ -37,7 +37,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         addNoteButton.removeFromSuperview()
     }
 
-    //MARK: Private methods
+    // MARK: - Private methods
     private func loadNotes() {
         notes = Dao().unarchiveNotes() ?? [Note]()
         tableView.reloadData()
@@ -73,7 +73,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         navigationController?.pushViewController(addNoteVC, animated: true)
     }
 
-    //MARK: AddNote Delegate Method
+    // MARK: - AddNote Delegate Method
     func add(note: Note) {
         if let index = notes.index(where: { $0 === note }) {
             notes.remove(at: index)
@@ -84,7 +84,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         tableView.reloadData()
     }
 
-    // MARK: Remove note
+    // MARK: - Remove note
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
@@ -97,7 +97,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         return true
     }
 
-    //MARK: TableView DataSource Methods
+    // MARK: - TableView DataSource Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -118,7 +118,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
         return cell
     }
 
-    //MARK: TableView Delegate Methods
+    // MARK: - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]

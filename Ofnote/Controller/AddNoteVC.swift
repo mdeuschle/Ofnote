@@ -24,7 +24,7 @@ class AddNoteVC: UIViewController {
     private var datePicker: UIDatePicker!
     private var saveBarButtonItem: UIBarButtonItem!
 
-    //MARK: Lifecycle
+    // MARK: - Lifecycle
     init(delegate: AddNoteDelegate) {
         self.delegate = delegate
         super.init(nibName: "AddNoteVC", bundle: nil)
@@ -48,7 +48,7 @@ class AddNoteVC: UIViewController {
         saveNote()
     }
 
-    //MARK: Private methods
+    // MARK: - Private methods
     private func configureNote() {
         guard let note = note else {
             addReminderTextField.text = ""
