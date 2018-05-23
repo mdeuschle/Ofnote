@@ -16,6 +16,10 @@
 		A87A59A920B25AA900890545 /* forget.png in Resources */ = {isa = PBXBuildFile; fileRef = A87A59A820B25AA900890545 /* forget.png */; };
 		A87A59AC20B3DCE000890545 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59AA20B3DCE000890545 /* SettingsVC.swift */; };
 		A87A59AD20B3DCE000890545 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87A59AB20B3DCE000890545 /* SettingsVC.xib */; };
+		A87A59AF20B508C500890545 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59AE20B508C500890545 /* Theme.swift */; };
+		A87A59B220B51BFD00890545 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59B120B51BFD00890545 /* DataService.swift */; };
+		A87A59B520B5246F00890545 /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59B320B5246F00890545 /* ThemeCell.swift */; };
+		A87A59B620B5246F00890545 /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87A59B420B5246F00890545 /* ThemeCell.xib */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
 		A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19F292092CFE300F32A9C /* AddNoteVC.swift */; };
 		A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */; };
@@ -38,6 +42,10 @@
 		A87A59A820B25AA900890545 /* forget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forget.png; sourceTree = "<group>"; };
 		A87A59AA20B3DCE000890545 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A87A59AB20B3DCE000890545 /* SettingsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
+		A87A59AE20B508C500890545 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A87A59B120B51BFD00890545 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		A87A59B320B5246F00890545 /* ThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
+		A87A59B420B5246F00890545 /* ThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A8D19F292092CFE300F32A9C /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNoteVC.xib; sourceTree = "<group>"; };
@@ -82,6 +90,8 @@
 				A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */,
 				A846D00220B11FBD00399BBA /* NoetCell.swift */,
 				A87A59AB20B3DCE000890545 /* SettingsVC.xib */,
+				A87A59B320B5246F00890545 /* ThemeCell.swift */,
+				A87A59B420B5246F00890545 /* ThemeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -92,6 +102,7 @@
 				A812ED52208EBCED0061FDA7 /* Note.swift */,
 				A8D19EFD2090300900F32A9C /* Dao.swift */,
 				A863235D2095411200BE1CB7 /* Priority.swift */,
+				A87A59AE20B508C500890545 /* Theme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +121,14 @@
 				A87A59A420B2373200890545 /* UserNotification.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		A87A59B020B51B7100890545 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A87A59B120B51BFD00890545 /* DataService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A8D958A0208EB8D40072DD5D = {
@@ -133,6 +152,7 @@
 		A8D958AB208EB8D50072DD5D /* Ofnote */ = {
 			isa = PBXGroup;
 			children = (
+				A87A59B020B51B7100890545 /* Services */,
 				A812ED50208EBAD00061FDA7 /* Model */,
 				A812ED4F208EBACA0061FDA7 /* View */,
 				A812ED4E208EBABF0061FDA7 /* Controller */,
@@ -226,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8D958B7208EB8D50072DD5D /* LaunchScreen.storyboard in Resources */,
+				A87A59B620B5246F00890545 /* ThemeCell.xib in Resources */,
 				A8D958B4208EB8D50072DD5D /* Assets.xcassets in Resources */,
 				A87A59A920B25AA900890545 /* forget.png in Resources */,
 				A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */,
@@ -284,9 +305,12 @@
 				A8D19EFE2090300900F32A9C /* Dao.swift in Sources */,
 				A8D958AF208EB8D50072DD5D /* RootVC.swift in Sources */,
 				A87A59A520B2373200890545 /* UserNotification.swift in Sources */,
+				A87A59B220B51BFD00890545 /* DataService.swift in Sources */,
 				A846D00320B11FBD00399BBA /* NoetCell.swift in Sources */,
+				A87A59AF20B508C500890545 /* Theme.swift in Sources */,
 				A846CFFF20A8C82300399BBA /* Date.swift in Sources */,
 				A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */,
+				A87A59B520B5246F00890545 /* ThemeCell.swift in Sources */,
 				A8D958AD208EB8D50072DD5D /* AppDelegate.swift in Sources */,
 				A812ED53208EBCED0061FDA7 /* Note.swift in Sources */,
 				A863235E2095411200BE1CB7 /* Priority.swift in Sources */,

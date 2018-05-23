@@ -9,33 +9,35 @@
 import UIKit
 
 class SettingsVC: UITableViewController {
+
+    let themes = DataService.instance.getThemes()
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.register(UINib(nibName: "ThemeCell", bundle: nil), forCellReuseIdentifier: "themeCell")
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return themes.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "themeCell", for: indexPath) as? ThemeCell else {
+            return UITableViewCell()
+        }
+        let theme = themes[indexPath.row]
+        cell.textLabel?.text = theme.name
+        cell.backgroundColor = theme.color
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
