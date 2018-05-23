@@ -175,6 +175,7 @@
 				A8D958A5208EB8D50072DD5D /* Sources */,
 				A8D958A6208EB8D50072DD5D /* Frameworks */,
 				A8D958A7208EB8D50072DD5D /* Resources */,
+				AE1A179DAAE9A7985C68BDCB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +238,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AE1A179DAAE9A7985C68BDCB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ofnote/Pods-Ofnote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F61B1F0AD0A76C6E847439AF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

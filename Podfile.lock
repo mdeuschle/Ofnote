@@ -1,3 +1,18 @@
-PODFILE CHECKSUM: b99730474f1a7537c8a83e1d9125ce6fe2f83372
+PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+
+DEPENDENCIES:
+  - ChameleonFramework/Swift
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - ChameleonFramework
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+
+PODFILE CHECKSUM: a224656b83b11cbb2245e6077a4e11fc93e7060f
 
 COCOAPODS: 1.5.0
