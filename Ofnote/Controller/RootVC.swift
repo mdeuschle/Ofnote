@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootVC: UITableViewController, AddNoteDelegate {
+class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
 
     private var notes = [Note]()
     private var filteredNotes = [Note]()
@@ -30,11 +30,16 @@ class RootVC: UITableViewController, AddNoteDelegate {
         navigationItem.searchController?.searchBar.showsCancelButton = false
         navigationItem.searchController?.searchBar.text = ""
         setUpAddNoteButton()
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         addNoteButton.removeFromSuperview()
+    }
+
+    func updateThemeWith(color: UIColor) {
+        //todo color
     }
 
     // MARK: - Private methods
@@ -54,6 +59,7 @@ class RootVC: UITableViewController, AddNoteDelegate {
 
     @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {
         let settingsVC = SettingsVC(nibName: "SettingsVC", bundle: nil)
+        settingsVC.updateThemeDelegate = self
         navigationController?.pushViewController(settingsVC, animated: true)
     }
 
