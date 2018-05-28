@@ -7,20 +7,43 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 enum Priority: String {
     case now = "Now"
     case later = "Later"
     case delegate = "Delegate"
 
-    func color() -> UIColor {
+    func getColor(for theme: Theme) -> UIColor {
+        let colorsFromScheme = ColorSchemeOf(.triadic,
+                                             color: theme.color,
+                                             isFlatScheme: true)
         switch self {
         case .later:
-            return .yellow
+            return colorsFromScheme[1]
         case .delegate:
-            return .blue
+            return colorsFromScheme[2]
         default:
-            return .red
+            return colorsFromScheme[0]
         }
     }
 }
+
+
+//enum Priority: String {
+//    case now = "Now"
+//    case later = "Later"
+//    case delegate = "Delegate"
+//
+//    func color() -> UIColor {
+//        switch self {
+//        case .later:
+//            return .yellow
+//        case .delegate:
+//            return .blue
+//        default:
+//            return .red
+//        }
+//    }
+//}
+

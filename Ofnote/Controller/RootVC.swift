@@ -8,11 +8,12 @@
 
 import UIKit
 
-class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
+class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
 
     private var notes = [Note]()
     private var filteredNotes = [Note]()
     private var isFiltering = false
+    private var selectedTheme: Theme = Theme(name: "Mint", color: .flatMint)
     let addNoteButton = UIButton(type: .system)
 
     // MARK: - Lifecyle
@@ -30,16 +31,11 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
         navigationItem.searchController?.searchBar.showsCancelButton = false
         navigationItem.searchController?.searchBar.text = ""
         setUpAddNoteButton()
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         addNoteButton.removeFromSuperview()
-    }
-
-    func updateThemeWith(color: UIColor) {
-        //todo color
     }
 
     // MARK: - Private methods
@@ -48,6 +44,7 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
         tableView.reloadData()
     }
 
+    // MARK: - Buttons
     private func setUpSettingsButton() {
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
                                              style: .plain,
@@ -59,7 +56,7 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
 
     @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {
         let settingsVC = SettingsVC(nibName: "SettingsVC", bundle: nil)
-        settingsVC.updateThemeDelegate = self
+        settingsVC.selectedThemeDelegate = self
         navigationController?.pushViewController(settingsVC, animated: true)
     }
 
@@ -74,9 +71,14 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
     }
 
     @objc private func addItemTapped(_ sender: UIButton) {
-        let addNoteVC = AddNoteVC(delegate: self)
-        addNoteVC.note = nil
+        let addNoteVC = passToAddNoteVC()
         navigationController?.pushViewController(addNoteVC, animated: true)
+    }
+
+    // MARK: - Selected Theme Delegate
+
+    func didSelect(theme: Theme) {
+        selectedTheme = theme
     }
 
     // MARK: - AddNote Delegate Method
@@ -120,7 +122,7 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
         let row = indexPath.row
         let note = isFiltering ? filteredNotes[row] : notes[row]
         cell.configure(note: note)
-        cell.backgroundColor = Priority(rawValue: note.priorityRawValue)?.color()
+        cell.backgroundColor = Priority(rawValue: note.priorityRawValue)?.getColor(for: selectedTheme)
         return cell
     }
 
@@ -128,9 +130,16 @@ class RootVC: UITableViewController, AddNoteDelegate, UpdateThemeDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
+        let addNoteVC = passToAddNoteVC(note: note)
+        navigationController?.pushViewController(addNoteVC, animated: true)
+    }
+
+    // MARK: - Setup AddNote VC
+    private func passToAddNoteVC(note: Note? = nil) -> AddNoteVC {
         let addNoteVC = AddNoteVC(delegate: self)
         addNoteVC.note = note
-        navigationController?.pushViewController(addNoteVC, animated: true)
+        addNoteVC.theme = selectedTheme
+        return addNoteVC
     }
 }
 

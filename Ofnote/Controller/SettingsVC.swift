@@ -9,14 +9,14 @@
 import UIKit
 import ChameleonFramework
 
-protocol UpdateThemeDelegate {
-    func updateThemeWith(color: UIColor)
+protocol SelectedThemeDelegate {
+    func didSelect(theme: Theme)
 }
 
 class SettingsVC: UITableViewController {
 
     let themes = DataService.instance.getThemes()
-    var updateThemeDelegate: UpdateThemeDelegate?
+    var selectedThemeDelegate: SelectedThemeDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +50,8 @@ class SettingsVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath),
-            let color = cell.backgroundColor else {
-                return
-        }
-        updateThemeDelegate?.updateThemeWith(color: color)
+        let theme = themes[indexPath.row]
+        selectedThemeDelegate?.didSelect(theme: theme)
         navigationController?.popViewController(animated: true)
     }
 }

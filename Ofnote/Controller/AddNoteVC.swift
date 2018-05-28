@@ -18,6 +18,7 @@ class AddNoteVC: UIViewController {
     @IBOutlet weak var addNoteTextView: UITextView!
 
     var delegate: AddNoteDelegate?
+    var theme: Theme?
     var note: Note?
     private var priority: Priority?
     private var reminderDate: Date?
@@ -54,12 +55,13 @@ class AddNoteVC: UIViewController {
             addReminderTextField.text = ""
             addReminderTextField.text = ""
             priority = Priority(rawValue: "Now")
-            view.backgroundColor = priority?.color()
+            if let theme = theme {
+                view.backgroundColor = priority?.getColor(for: theme)
+            }
             return
         }
         priority = Priority(rawValue: note.priorityRawValue)
         addNoteTextView.text = note.title
-        view.backgroundColor = priority?.color()
         if let reminderDate = note.reminderDate {
             self.reminderDate = reminderDate
             addReminderTextField.text = reminderDate.format
@@ -120,7 +122,9 @@ class AddNoteVC: UIViewController {
             return
         }
         self.priority = priority
-        view.backgroundColor = priority.color()
+        if let theme = theme {
+            view.backgroundColor = priority.getColor(for: theme)
+        }
     }
 }
 
@@ -183,7 +187,6 @@ extension AddNoteVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         saveBarButtonItem.isEnabled = true
     }
-
 }
 
 
