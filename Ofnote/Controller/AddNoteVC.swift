@@ -12,14 +12,15 @@ protocol AddNoteDelegate {
 
 import UIKit
 
-class AddNoteVC: UIViewController {
+class AddNoteVC: UIViewController, SelectPriorityDelegate {
 
     @IBOutlet weak var addReminderTextField: UITextField!
     @IBOutlet weak var addNoteTextView: UITextView!
-
+    
     var delegate: AddNoteDelegate?
     var theme: Theme?
     var note: Note?
+
     private var priority: Priority?
     private var reminderDate: Date?
     private var datePicker: UIDatePicker!
@@ -56,7 +57,7 @@ class AddNoteVC: UIViewController {
             addReminderTextField.text = ""
             priority = Priority(rawValue: "Now")
             if let theme = theme {
-                view.backgroundColor = priority?.getColor(for: theme)
+                view.backgroundColor = theme.color
             }
             return
         }
@@ -81,11 +82,10 @@ class AddNoteVC: UIViewController {
     }
 
     private func setUpPrioritiesView() {
-        guard let nib = Bundle.main.loadNibNamed("TextFieldAccessoryView", owner: self, options: nil),
-            let accessoryView = nib[0] as? UIView else {
-                return
-        }
-        accessoryView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
+        let accessoryFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
+        let accessoryView = TextFieldAccessoryView(frame: accessoryFrame)
+        accessoryView.selectPriorityDelegate = self
+        accessoryView.configureButtonsWith(theme: theme!)
         addNoteTextView.inputAccessoryView = accessoryView
     }
 
@@ -113,17 +113,12 @@ class AddNoteVC: UIViewController {
         }
     }
 
-    @IBAction func priorityButtonTapped(_ sender: UIButton) {
-        guard let label = sender.titleLabel,
-            let text = label.text else {
-                return
-        }
-        guard let priority = Priority(rawValue: text) else {
-            return
-        }
+    // MARK: - Delegate Methods
+
+    func didSelect(priority: Priority) {
         self.priority = priority
         if let theme = theme {
-            view.backgroundColor = priority.getColor(for: theme)
+            view.backgroundColor = theme.color
         }
     }
 }

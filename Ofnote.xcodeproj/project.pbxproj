@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A812ED53208EBCED0061FDA7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812ED52208EBCED0061FDA7 /* Note.swift */; };
 		A846CFFF20A8C82300399BBA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846CFFE20A8C82300399BBA /* Date.swift */; };
-		A846D00320B11FBD00399BBA /* NoetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846D00220B11FBD00399BBA /* NoetCell.swift */; };
+		A846D00320B11FBD00399BBA /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A846D00220B11FBD00399BBA /* NoteCell.swift */; };
 		A863235E2095411200BE1CB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863235D2095411200BE1CB7 /* Priority.swift */; };
 		A863236A2095686E00BE1CB7 /* TextFieldAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */; };
 		A87A59A520B2373200890545 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59A420B2373200890545 /* UserNotification.swift */; };
@@ -20,6 +20,7 @@
 		A87A59B220B51BFD00890545 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59B120B51BFD00890545 /* DataService.swift */; };
 		A87A59B520B5246F00890545 /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A59B320B5246F00890545 /* ThemeCell.swift */; };
 		A87A59B620B5246F00890545 /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A87A59B420B5246F00890545 /* ThemeCell.xib */; };
+		A8BC41C520BC50B200AB5BD4 /* TextFieldAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC41C420BC50B200AB5BD4 /* TextFieldAccessoryView.swift */; };
 		A8D19EFE2090300900F32A9C /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19EFD2090300900F32A9C /* Dao.swift */; };
 		A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19F292092CFE300F32A9C /* AddNoteVC.swift */; };
 		A8D19F2C2092CFE300F32A9C /* AddNoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */; };
@@ -35,7 +36,7 @@
 		611E25787BDD1D2CB7515DAD /* Pods_Ofnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ofnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A812ED52208EBCED0061FDA7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		A846CFFE20A8C82300399BBA /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		A846D00220B11FBD00399BBA /* NoetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoetCell.swift; sourceTree = "<group>"; };
+		A846D00220B11FBD00399BBA /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		A863235D2095411200BE1CB7 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldAccessoryView.xib; sourceTree = "<group>"; };
 		A87A59A420B2373200890545 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		A87A59B120B51BFD00890545 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		A87A59B320B5246F00890545 /* ThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
 		A87A59B420B5246F00890545 /* ThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
+		A8BC41C420BC50B200AB5BD4 /* TextFieldAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAccessoryView.swift; sourceTree = "<group>"; };
 		A8D19EFD2090300900F32A9C /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A8D19F292092CFE300F32A9C /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNoteVC.xib; sourceTree = "<group>"; };
@@ -88,7 +90,8 @@
 				A8D958B0208EB8D50072DD5D /* Main.storyboard */,
 				A8D19F2A2092CFE300F32A9C /* AddNoteVC.xib */,
 				A86323692095686E00BE1CB7 /* TextFieldAccessoryView.xib */,
-				A846D00220B11FBD00399BBA /* NoetCell.swift */,
+				A8BC41C420BC50B200AB5BD4 /* TextFieldAccessoryView.swift */,
+				A846D00220B11FBD00399BBA /* NoteCell.swift */,
 				A87A59AB20B3DCE000890545 /* SettingsVC.xib */,
 				A87A59B320B5246F00890545 /* ThemeCell.swift */,
 				A87A59B420B5246F00890545 /* ThemeCell.xib */,
@@ -100,9 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				A812ED52208EBCED0061FDA7 /* Note.swift */,
-				A8D19EFD2090300900F32A9C /* Dao.swift */,
-				A863235D2095411200BE1CB7 /* Priority.swift */,
 				A87A59AE20B508C500890545 /* Theme.swift */,
+				A863235D2095411200BE1CB7 /* Priority.swift */,
+				A8D19EFD2090300900F32A9C /* Dao.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,7 +309,7 @@
 				A8D958AF208EB8D50072DD5D /* RootVC.swift in Sources */,
 				A87A59A520B2373200890545 /* UserNotification.swift in Sources */,
 				A87A59B220B51BFD00890545 /* DataService.swift in Sources */,
-				A846D00320B11FBD00399BBA /* NoetCell.swift in Sources */,
+				A846D00320B11FBD00399BBA /* NoteCell.swift in Sources */,
 				A87A59AF20B508C500890545 /* Theme.swift in Sources */,
 				A846CFFF20A8C82300399BBA /* Date.swift in Sources */,
 				A8D19F2B2092CFE300F32A9C /* AddNoteVC.swift in Sources */,
@@ -315,6 +318,7 @@
 				A812ED53208EBCED0061FDA7 /* Note.swift in Sources */,
 				A863235E2095411200BE1CB7 /* Priority.swift in Sources */,
 				A87A59AC20B3DCE000890545 /* SettingsVC.swift in Sources */,
+				A8BC41C520BC50B200AB5BD4 /* TextFieldAccessoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

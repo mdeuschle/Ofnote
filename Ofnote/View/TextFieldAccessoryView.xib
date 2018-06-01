@@ -10,58 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNoteVC" customModule="Ofnote" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextFieldAccessoryView" customModule="Ofnote" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="605" height="126"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yEK-lF-xu5">
-                    <rect key="frame" x="0.0" y="0.0" width="605" height="126"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otm-gw-cgv">
-                            <rect key="frame" x="0.0" y="0.0" width="201.5" height="126"/>
-                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Now">
-                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="priorityButtonTapped:" destination="-1" eventType="touchUpInside" id="Cuq-A5-ITS"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtu-Ga-4yL">
-                            <rect key="frame" x="201.5" y="0.0" width="202" height="126"/>
-                            <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Later">
-                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="priorityButtonTapped:" destination="-1" eventType="touchUpInside" id="tjn-AW-sub"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBX-lH-1Ep">
-                            <rect key="frame" x="403.5" y="0.0" width="201.5" height="126"/>
-                            <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Delegate">
-                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="priorityButtonTapped:" destination="-1" eventType="touchUpInside" id="T11-NI-AE5"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yEK-lF-xu5" secondAttribute="trailing" id="0o8-Jh-KUg"/>
-                <constraint firstItem="yEK-lF-xu5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Auf-y3-pUd"/>
-                <constraint firstItem="yEK-lF-xu5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GqB-6W-w38"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yEK-lF-xu5" secondAttribute="bottom" id="v4j-Gu-cPO"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="40.5" y="-142"/>

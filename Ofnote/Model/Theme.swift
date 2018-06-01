@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 struct Theme {
     private(set) var name: String
@@ -15,6 +16,21 @@ struct Theme {
     init(name: String, color: UIColor) {
         self.name = name
         self.color = color
+    }
+
+    func getColorFor(priority: Priority) -> UIColor {
+        let colors = ColorSchemeOf(.analogous,
+                                   color: color,
+                                   isFlatScheme: true)
+        print(colors.count)
+        switch priority {
+        case .now:
+            return color
+        case .later:
+            return colors[0]
+        case .delegate:
+            return colors[4]
+        }
     }
 }
 

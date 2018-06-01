@@ -116,13 +116,12 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? NoteCell else {
-            print("NOPE")
             return UITableViewCell()
         }
         let row = indexPath.row
         let note = isFiltering ? filteredNotes[row] : notes[row]
         cell.configure(note: note)
-        cell.backgroundColor = Priority(rawValue: note.priorityRawValue)?.getColor(for: selectedTheme)
+        cell.backgroundColor = selectedTheme.color
         return cell
     }
 
