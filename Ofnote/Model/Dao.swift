@@ -11,16 +11,29 @@ import Foundation
 struct Dao {
 
     let notesDirectory: String
+    let themeDirectory: String
 
     init() {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                       .userDomainMask,
+                                                       true)
         notesDirectory = "\(path[0])/notes"
+        themeDirectory = "\(path[0])/theme"
     }
 
     func archive(notes: [Note]) {
         do {
             let data = try PropertyListEncoder().encode(notes)
             NSKeyedArchiver.archiveRootObject(data, toFile: notesDirectory)
+        } catch {
+            print(error)
+        }
+    }
+
+    func archive(theme: Theme) {
+        do {
+            let data = try PropertyListEncoder().encode(theme)
+            NSKeyedArchiver.archiveRootObject(data, toFile: themeDirectory)
         } catch {
             print(error)
         }
