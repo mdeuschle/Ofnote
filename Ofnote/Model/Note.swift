@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Note: Codable {
+struct Note: Codable {
     var title: String
     var priorityRawValue = "Now"
     let dateCreated: Date
