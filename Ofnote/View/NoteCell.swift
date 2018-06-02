@@ -14,7 +14,9 @@ class NoteCell: UITableViewCell {
     @IBOutlet weak var reminderImage: UIImageView!
     @IBOutlet weak var reminderLabel: UILabel!
 
-    func configure(note: Note) {
+    func configure(note: Note, theme: Theme) {
+        let priority = Priority(rawValue: note.priorityRawValue)
+        self.backgroundColor = theme.getColorFor(priority: priority!)
         noteTitleLabel.text = note.title
         if let reminderDate = note.reminderDate {
             reminderLabel.text = reminderDate.format

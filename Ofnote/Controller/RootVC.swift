@@ -13,14 +13,16 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     private var notes = [Note]()
     private var filteredNotes = [Note]()
     private var isFiltering = false
-    private var selectedTheme: Theme = Theme(name: "Mint", color: .flatMint)
+    private var theme: Theme = Theme(name: "Mint", color: .flatMint)
     let addNoteButton = UIButton(type: .system)
 
     // MARK: - Lifecyle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         loadNotes()
+        loadTheme()
         setUpSearchBar()
         setUpSettingsButton()
         tableView.rowHeight = 80
@@ -28,8 +30,7 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.searchController?.searchBar.showsCancelButton = false
-        navigationItem.searchController?.searchBar.text = ""
+        clearSearchBar()
         setUpAddNoteButton()
     }
 
@@ -39,12 +40,19 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     // MARK: - Private methods
+
     private func loadNotes() {
         notes = Dao().unarchiveNotes() ?? [Note]()
         tableView.reloadData()
     }
 
+    private func loadTheme() {
+        theme = Dao().unarchiveTheme() ?? Theme(name: "Mint", color: .flatMint)
+        tableView.reloadData()
+    }
+
     // MARK: - Buttons
+
     private func setUpSettingsButton() {
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
                                              style: .plain,
@@ -78,21 +86,24 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     // MARK: - Selected Theme Delegate
 
     func didSelect(theme: Theme) {
-        selectedTheme = theme
+        self.theme = theme
+        Dao().archive(theme: theme)
+        tableView.reloadData()
     }
 
     // MARK: - AddNote Delegate Method
+
     func add(note: Note) {
         if let index = notes.index(where: { $0 === note }) {
             notes.remove(at: index)
         }
         notes.append(note)
         Dao().archive(notes: notes)
-        notes.sort { $0.dateCreated > $1.dateCreated }
         tableView.reloadData()
     }
 
     // MARK: - Remove note
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
@@ -106,6 +117,7 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     // MARK: - TableView DataSource Methods
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -115,17 +127,18 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        notes.sort { $0.dateCreated > $1.dateCreated }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? NoteCell else {
             return UITableViewCell()
         }
         let row = indexPath.row
         let note = isFiltering ? filteredNotes[row] : notes[row]
-        cell.configure(note: note)
-        cell.backgroundColor = selectedTheme.color
+        cell.configure(note: note, theme: theme)
         return cell
     }
 
     // MARK: - TableView Delegate Methods
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let note = isFiltering ? filteredNotes[indexPath.row] : notes[indexPath.row]
@@ -134,10 +147,11 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     // MARK: - Setup AddNote VC
+    
     private func passToAddNoteVC(note: Note? = nil) -> AddNoteVC {
         let addNoteVC = AddNoteVC(delegate: self)
         addNoteVC.note = note
-        addNoteVC.theme = selectedTheme
+        addNoteVC.theme = theme
         return addNoteVC
     }
 }
@@ -149,6 +163,11 @@ extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
+    }
+
+    private func clearSearchBar() {
+        navigationItem.searchController?.searchBar.showsCancelButton = false
+        navigationItem.searchController?.searchBar.text = ""
     }
 
     func updateSearchResults(for searchController: UISearchController) {

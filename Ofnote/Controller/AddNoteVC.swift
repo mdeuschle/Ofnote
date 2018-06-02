@@ -16,12 +16,12 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
 
     @IBOutlet weak var addReminderTextField: UITextField!
     @IBOutlet weak var addNoteTextView: UITextView!
-    
-    var delegate: AddNoteDelegate?
-    var theme: Theme?
-    var note: Note?
 
-    private var priority: Priority?
+    var delegate: AddNoteDelegate?
+    var note: Note?
+    var theme: Theme = Theme(name: "Mint", color: .flatMint)
+    var priority: Priority?
+
     private var reminderDate: Date?
     private var datePicker: UIDatePicker!
     private var saveBarButtonItem: UIBarButtonItem!
@@ -53,16 +53,14 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     // MARK: - Private methods
     private func configureNote() {
         guard let note = note else {
-            addReminderTextField.text = ""
-            addReminderTextField.text = ""
             priority = Priority(rawValue: "Now")
-            if let theme = theme {
-                view.backgroundColor = theme.color
-            }
+            view.backgroundColor = theme.getColorFor(priority: priority!)
+            addReminderTextField.text = ""
             return
         }
-        priority = Priority(rawValue: note.priorityRawValue)
         addNoteTextView.text = note.title
+        priority = Priority(rawValue: note.priorityRawValue)
+        view.backgroundColor = theme.getColorFor(priority: priority!)
         if let reminderDate = note.reminderDate {
             self.reminderDate = reminderDate
             addReminderTextField.text = reminderDate.format
@@ -85,7 +83,7 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
         let accessoryFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
         let accessoryView = TextFieldAccessoryView(frame: accessoryFrame)
         accessoryView.selectPriorityDelegate = self
-        accessoryView.configureButtonsWith(theme: theme!)
+        accessoryView.configureButtonsWith(theme: theme)
         addNoteTextView.inputAccessoryView = accessoryView
     }
 
@@ -100,8 +98,8 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
             note.priorityRawValue = priority!.rawValue
             if let reminderDate = self.reminderDate {
                 note.reminderDate = reminderDate
-                delegate.add(note: note)
             }
+            delegate.add(note: note)
         } else {
             if let newNote = Note(title: textViewText) {
                 newNote.priorityRawValue = priority!.rawValue
@@ -117,8 +115,8 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
 
     func didSelect(priority: Priority) {
         self.priority = priority
-        if let theme = theme {
-            view.backgroundColor = theme.color
+        UIView.animate(withDuration: 0.15) {
+            self.view.backgroundColor = self.theme.getColorFor(priority: priority)
         }
     }
 }

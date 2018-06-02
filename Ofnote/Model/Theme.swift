@@ -22,7 +22,6 @@ struct Theme {
         let colors = ColorSchemeOf(.analogous,
                                    color: color,
                                    isFlatScheme: true)
-        print(colors.count)
         switch priority {
         case .now:
             return color
