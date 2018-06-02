@@ -51,4 +51,17 @@ struct Dao {
             return nil
         }
     }
+
+    func unarchiveTheme() -> Theme? {
+        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: themeDirectory) as? Data else {
+            return nil
+        }
+        do {
+            let theme = try PropertyListDecoder().decode(Theme.self, from: data)
+            return theme
+        } catch {
+            print(error)
+            return nil
+        }
+    }
 }
