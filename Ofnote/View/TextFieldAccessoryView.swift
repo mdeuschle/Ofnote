@@ -29,7 +29,10 @@ class TextFieldAccessoryView: UIView {
                                      height: 60)
             let button = UIButton(frame: buttonFrame)
             buttonX = frameWidth + buttonX
-            button.backgroundColor = theme.getColorFor(priority: priorities[index])
+            let color = Color(theme: theme)
+            let backgroundColor = color.getAccessoryColors(priority: priorities[index])
+            button.backgroundColor = backgroundColor
+            button.setTitleColor(ContrastColorOf(backgroundColor, returnFlat: true), for: .normal)
             button.setTitle(priorities[index].rawValue, for: .normal)
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             self.addSubview(button)

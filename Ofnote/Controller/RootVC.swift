@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
 
     private var notes = [Note]()
     private var filteredNotes = [Note]()
     private var isFiltering = false
-    private var theme: Theme = Theme(name: "Mint", color: .flatMint)
+    private var theme: Theme! {
+        didSet {
+            setUpNavigationBar()
+            setUpAddNoteButton()
+            setUpTableView()
+        }
+    }
     let addNoteButton = UIButton(type: .system)
 
     // MARK: - Lifecyle
@@ -23,8 +30,8 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         tableView.separatorStyle = .none
         loadNotes()
         loadTheme()
+        setUpNavigationBar()
         setUpSearchBar()
-        setUpSettingsButton()
         tableView.rowHeight = 80
     }
 
@@ -51,15 +58,22 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         tableView.reloadData()
     }
 
-    // MARK: - Buttons
-
-    private func setUpSettingsButton() {
+    private func setUpNavigationBar() {
+        let contrastColor = ContrastColorOf(theme.color, returnFlat: true)
+        guard let navigationController = navigationController else {
+                return
+        }
+        let _navigationBar = navigationController.navigationBar
+        _navigationBar.barTintColor = theme.color
+        _navigationBar.tintColor = contrastColor
+        let textAttributes = [NSAttributedStringKey.foregroundColor: contrastColor]
+        _navigationBar.largeTitleTextAttributes = textAttributes
+        _navigationBar.titleTextAttributes = textAttributes
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(settingsButtonTapped(_:)))
         navigationItem.rightBarButtonItem = settingsButton
-        navigationController?.navigationBar.tintColor = .white
     }
 
     @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {
@@ -68,11 +82,16 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         navigationController?.pushViewController(settingsVC, animated: true)
     }
 
+    private func setUpTableView() {
+        tableView.backgroundColor = theme.color
+    }
+
     private func setUpAddNoteButton() {
         let cgRect = CGRect(x: 0, y: view.bounds.size.height - 50, width: view.frame.width, height: 50)
         addNoteButton.frame = cgRect
-        addNoteButton.backgroundColor = .darkGray
-        addNoteButton.setTitleColor(.white, for: .normal)
+        addNoteButton.backgroundColor = ComplementaryFlatColorOf(theme.color)
+        let fontColor = ContrastColorOf(theme.color, returnFlat: true)
+        addNoteButton.setTitleColor(fontColor, for: .normal)
         addNoteButton.setTitle("Add Item", for: .normal)
         addNoteButton.addTarget(self, action: #selector(addItemTapped(_:)), for: .touchUpInside)
         navigationController?.view.addSubview(addNoteButton)

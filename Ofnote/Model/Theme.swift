@@ -17,20 +17,20 @@ struct Theme {
         self.name = name
         self.color = color
     }
-
-    func getColorFor(priority: Priority) -> UIColor {
-        let colors = ColorSchemeOf(.analogous,
-                                   color: color,
-                                   isFlatScheme: true)
-        switch priority {
-        case .now:
-            return color
-        case .later:
-            return colors[0]
-        case .delegate:
-            return colors[4]
-        }
-    }
+//
+//    func getColorFor(priority: Priority) -> UIColor {
+//        let colors = ColorSchemeOf(.analogous,
+//                                   color: color,
+//                                   isFlatScheme: true)
+//        switch priority {
+//        case .now:
+//            return color
+//        case .later:
+//            return colors[0]
+//        case .delegate:
+//            return colors[4]
+//        }
+//    }
 }
 
 extension Theme: Codable {

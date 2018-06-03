@@ -22,6 +22,7 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     var theme: Theme = Theme(name: "Mint", color: .flatMint)
     var priority: Priority?
 
+    private var color: Color?
     private var reminderDate: Date?
     private var datePicker: UIDatePicker!
     private var saveBarButtonItem: UIBarButtonItem!
@@ -41,8 +42,9 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
         addReminderTextField.delegate = self
         addNoteTextView.delegate = self
         setUpPrioritiesView()
-        configureNote()
         configureDoneBarButton()
+        color = Color(theme: theme)
+        configureNote()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,13 +56,13 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     private func configureNote() {
         guard let note = note else {
             priority = Priority(rawValue: "Now")
-            view.backgroundColor = theme.getColorFor(priority: priority!)
+            view.backgroundColor = color?.getAccessoryColors(priority: priority!)
             addReminderTextField.text = ""
             return
         }
         addNoteTextView.text = note.title
         priority = Priority(rawValue: note.priorityRawValue)
-        view.backgroundColor = theme.getColorFor(priority: priority!)
+        view.backgroundColor = color?.getAccessoryColors(priority: priority!)
         if let reminderDate = note.reminderDate {
             self.reminderDate = reminderDate
             addReminderTextField.text = reminderDate.format
@@ -116,7 +118,7 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     func didSelect(priority: Priority) {
         self.priority = priority
         UIView.animate(withDuration: 0.15) {
-            self.view.backgroundColor = self.theme.getColorFor(priority: priority)
+            self.view.backgroundColor = self.color?.getAccessoryColors(priority: priority)
         }
     }
 }

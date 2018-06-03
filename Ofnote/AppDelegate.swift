@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
+        Appearance.configure()
         return true
     }
 

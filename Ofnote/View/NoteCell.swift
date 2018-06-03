@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class NoteCell: UITableViewCell {
 
@@ -16,7 +17,11 @@ class NoteCell: UITableViewCell {
 
     func configure(note: Note, theme: Theme) {
         let priority = Priority(rawValue: note.priorityRawValue)
-        self.backgroundColor = theme.getColorFor(priority: priority!)
+        let themeColor = Color(theme: theme).getAccessoryColors(priority: priority!)
+        self.backgroundColor = themeColor
+        let textColor = ContrastColorOf(themeColor, returnFlat: true)
+        noteTitleLabel.textColor = textColor
+        reminderLabel.textColor = textColor
         noteTitleLabel.text = note.title
         if let reminderDate = note.reminderDate {
             reminderLabel.text = reminderDate.format
