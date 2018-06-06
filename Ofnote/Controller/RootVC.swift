@@ -74,6 +74,7 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
                                              target: self,
                                              action: #selector(settingsButtonTapped(_:)))
         navigationItem.rightBarButtonItem = settingsButton
+        UIApplication.shared.statusBarStyle = contrastColor.hexValue() == "#262626" ? .default : .lightContent
     }
 
     @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {

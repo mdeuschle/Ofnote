@@ -20,7 +20,9 @@ struct Appearance {
         let textAttributes = [NSAttributedStringKey.foregroundColor: contrastColor]
         UINavigationBar.appearance().largeTitleTextAttributes = textAttributes
         UINavigationBar.appearance().titleTextAttributes = textAttributes
+        UIApplication.shared.statusBarStyle = contrastColor.hexValue() == "#262626" ? .default : .lightContent
     }
 }
+
 
 

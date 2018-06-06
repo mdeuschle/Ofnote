@@ -24,11 +24,11 @@ struct Color {
     func getAccessoryColors(priority: Priority) -> UIColor {
         switch priority {
         case .now:
-            return colors[0]
+            return colors[2]
         case .later:
             return colors[1]
         case .delegate:
-            return colors[3]
+            return colors[4]
         }
     }
 }

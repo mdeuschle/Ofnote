@@ -19,9 +19,14 @@ class NoteCell: UITableViewCell {
         let priority = Priority(rawValue: note.priorityRawValue)
         let themeColor = Color(theme: theme).getAccessoryColors(priority: priority!)
         self.backgroundColor = themeColor
-        let textColor = ContrastColorOf(themeColor, returnFlat: true)
-        noteTitleLabel.textColor = textColor
-        reminderLabel.textColor = textColor
+        let contrastColor = ContrastColorOf(themeColor, returnFlat: true)
+        noteTitleLabel.textColor = contrastColor
+        reminderLabel.textColor = contrastColor
+
+        reminderImage.image = reminderImage.image?.withRenderingMode(.alwaysTemplate)
+        reminderImage.tintColor = contrastColor
+
+
         noteTitleLabel.text = note.title
         if let reminderDate = note.reminderDate {
             reminderLabel.text = reminderDate.format
