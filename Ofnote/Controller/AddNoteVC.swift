@@ -82,7 +82,8 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     }
 
     private func setUpPrioritiesView() {
-        let accessoryFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 60)
+        let screenSize: CGRect = UIScreen.main.bounds
+        let accessoryFrame = CGRect(x: 0, y: 0, width: screenSize.width, height: 60)
         let accessoryView = TextFieldAccessoryView(frame: accessoryFrame)
         accessoryView.selectPriorityDelegate = self
         accessoryView.configureButtonsWith(theme: theme)
