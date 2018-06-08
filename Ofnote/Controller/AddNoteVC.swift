@@ -56,13 +56,16 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     private func configureNote() {
         guard let note = note else {
             priority = Priority(rawValue: "Now")
-            view.backgroundColor = color?.getAccessoryColors(priority: priority!)
+            let backgroundColor = color?.getAccessoryColors(priority: priority!)
+            view.backgroundColor = backgroundColor
+            addNoteTextView.backgroundColor = backgroundColor
             addReminderTextField.text = ""
             return
         }
         addNoteTextView.text = note.title
         priority = Priority(rawValue: note.priorityRawValue)
         view.backgroundColor = color?.getAccessoryColors(priority: priority!)
+        addNoteTextView.backgroundColor = color?.getAccessoryColors(priority: priority!)
         if let reminderDate = note.reminderDate {
             self.reminderDate = reminderDate
             addReminderTextField.text = reminderDate.format
@@ -119,7 +122,9 @@ class AddNoteVC: UIViewController, SelectPriorityDelegate {
     func didSelect(priority: Priority) {
         self.priority = priority
         UIView.animate(withDuration: 0.15) {
-            self.view.backgroundColor = self.color?.getAccessoryColors(priority: priority)
+            let backgroundColor = self.color?.getAccessoryColors(priority: priority)
+            self.view.backgroundColor = backgroundColor
+            self.addNoteTextView.backgroundColor = backgroundColor
         }
     }
 }

@@ -22,11 +22,8 @@ class NoteCell: UITableViewCell {
         let contrastColor = ContrastColorOf(themeColor, returnFlat: true)
         noteTitleLabel.textColor = contrastColor
         reminderLabel.textColor = contrastColor
-
         reminderImage.image = reminderImage.image?.withRenderingMode(.alwaysTemplate)
         reminderImage.tintColor = contrastColor
-
-
         noteTitleLabel.text = note.title
         if let reminderDate = note.reminderDate {
             reminderLabel.text = reminderDate.format

@@ -41,8 +41,7 @@ class SettingsVC: UITableViewController {
             return UITableViewCell()
         }
         let theme = themes[indexPath.row]
-        cell.textLabel?.text = theme.name
-        cell.backgroundColor = theme.color
+        cell.configure(theme: theme)
         return cell
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class ThemeCell: UITableViewCell {
 
@@ -14,5 +15,7 @@ class ThemeCell: UITableViewCell {
     
     func configure(theme: Theme) {
         themeNameLabel.text = theme.name
+        themeNameLabel.textColor = ContrastColorOf(theme.color, returnFlat: true)
+        self.backgroundColor = theme.color
     }
 }
