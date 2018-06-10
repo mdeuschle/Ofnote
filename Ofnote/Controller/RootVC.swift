@@ -32,7 +32,8 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         loadTheme()
         setUpNavigationBar()
         setUpSearchBar()
-        tableView.rowHeight = 80
+        setUpBarButtonItemes()
+        tableView.rowHeight = 100
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,12 +70,15 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         let textAttributes = [NSAttributedStringKey.foregroundColor: contrastColor]
         _navigationBar.largeTitleTextAttributes = textAttributes
         _navigationBar.titleTextAttributes = textAttributes
+        UIApplication.shared.statusBarStyle = contrastColor.hexValue() == "#262626" ? .default : .lightContent
+    }
+
+    private func setUpBarButtonItemes() {
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(settingsButtonTapped(_:)))
-        navigationItem.rightBarButtonItem = settingsButton
-        UIApplication.shared.statusBarStyle = contrastColor.hexValue() == "#262626" ? .default : .lightContent
+        navigationItem.rightBarButtonItems = [self.editButtonItem, settingsButton]
     }
 
     @objc private func settingsButtonTapped(_ sender: UIBarButtonItem) {
@@ -136,6 +140,14 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         return true
     }
 
+    // MARK: - Reorder
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let noteToMove = notes[sourceIndexPath.row]
+        notes.remove(at: sourceIndexPath.row)
+        notes.insert(noteToMove, at: destinationIndexPath.row)
+    }
+
     // MARK: - TableView DataSource Methods
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -147,7 +159,7 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        notes.sort { $0.dateCreated > $1.dateCreated }
+//        notes.sort { $0.dateCreated > $1.dateCreated }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? NoteCell else {
             return UITableViewCell()
         }
