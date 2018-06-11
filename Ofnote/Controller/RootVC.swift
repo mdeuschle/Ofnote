@@ -121,12 +121,16 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         if let index = notes.index(where: { $0 === note }) {
             notes.remove(at: index)
         }
-        notes.append(note)
+        notes.insert(note, at: 0)
         Dao().archive(notes: notes)
         tableView.reloadData()
     }
 
     // MARK: - Remove note
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -136,16 +140,11 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         }
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    // MARK: - Reorder
-
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let noteToMove = notes[sourceIndexPath.row]
         notes.remove(at: sourceIndexPath.row)
         notes.insert(noteToMove, at: destinationIndexPath.row)
+        Dao().archive(notes: notes)
     }
 
     // MARK: - TableView DataSource Methods
@@ -159,7 +158,6 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        notes.sort { $0.dateCreated > $1.dateCreated }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as? NoteCell else {
             return UITableViewCell()
         }
