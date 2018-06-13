@@ -38,7 +38,6 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clearSearchBar()
         setUpAddNoteButton()
     }
 
@@ -71,6 +70,7 @@ class RootVC: UITableViewController, AddNoteDelegate, SelectedThemeDelegate {
         _navigationBar.largeTitleTextAttributes = textAttributes
         _navigationBar.titleTextAttributes = textAttributes
         UIApplication.shared.statusBarStyle = contrastColor.hexValue() == "#262626" ? .default : .lightContent
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = contrastColor
     }
 
     private func setUpBarButtonItemes() {
@@ -192,12 +192,8 @@ extension RootVC: UISearchControllerDelegate, UISearchResultsUpdating {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.searchResultsUpdater = self
+        searchController.searchBar.barStyle = .blackOpaque
         navigationItem.searchController = searchController
-    }
-
-    private func clearSearchBar() {
-        navigationItem.searchController?.searchBar.showsCancelButton = false
-        navigationItem.searchController?.searchBar.text = ""
     }
 
     func updateSearchResults(for searchController: UISearchController) {
